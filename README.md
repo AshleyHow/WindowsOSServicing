@@ -78,7 +78,7 @@ This parameter is optional. Returns servicing information for specified operatin
 This parameter is required if the operating system has multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
 
 - CurrentVersion
-   
+
 This parameter is optional. Returns servicing information for the installed version.
 
 ## Usage
@@ -138,7 +138,7 @@ Lifecycle Policy URL : https://learn.microsoft.com/en-us/lifecycle/products/wind
 
 This module is maintained by the following
 
-  * Ashley How, [@AshleyHow1](https://twitter.com/AshleyHow1)
+* Ashley How, [@AshleyHow1](https://twitter.com/AshleyHow1)
 
 [psgallery-badge]: https://img.shields.io/powershellgallery/v/WindowsOSServicing.svg?logo=PowerShell&style=flat-square
 [psgallery]: https://www.powershellgallery.com/packages/WindowsOSServicing
