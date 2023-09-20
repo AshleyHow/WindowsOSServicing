@@ -2,7 +2,7 @@
 [![License][license-badge]][license]
 [![PowerShell Gallery][psgallery-badge]][psgallery]
 [![PowerShell Gallery Version][psgallery-version-badge]][psgallery]
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/ec81538145f64de7ad264606ed790407)](https://www.codacy.com/gh/AshleyHow/WindowsOSServicing/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AshleyHow/WindowsOSServicing&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/00f84feff8074dceacd535b7bae724c1)](https://app.codacy.com/gh/AshleyHow/WindowsOSServicing/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Build status](https://ci.appveyor.com/api/projects/status/o8l8510lkoo7igy1?svg=true)](https://ci.appveyor.com/project/ah-uk/WindowsOSServicing)
 
 ![alt text](https://github.com/AshleyHow/WindowsOSServicing/blob/main/WindowsOSServicing.png)
@@ -39,10 +39,9 @@ Gets Windows OS servicing information (OS Name, Version, Service start date, Ser
 
 ### Parameters
 
-  - Caption
-    
+- Caption
+
 This parameter is optional. Returns servicing information for specified operating system caption. Supported accepted values:
-    
 
 | Windows Client OS Captions                          |                                                                                    
 | :-------------------------------------------------- | 
@@ -74,12 +73,11 @@ This parameter is optional. Returns servicing information for specified operatin
 | Microsoft Windows Server 2019                       |
 | Microsoft Windows Server 2022                       |
 
-
-   -  Version
+- Version
 
 This parameter is required if the operating system has multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
 
-   - CurrentVersion
+- CurrentVersion
    
 This parameter is optional. Returns servicing information for the installed version.
 
@@ -140,7 +138,7 @@ Lifecycle Policy URL : https://learn.microsoft.com/en-us/lifecycle/products/wind
 
 This module is maintained by the following
 
-* Ashley How, [@AshleyHow1](https://twitter.com/AshleyHow1)
+  * Ashley How, [@AshleyHow1](https://twitter.com/AshleyHow1)
 
 [psgallery-badge]: https://img.shields.io/powershellgallery/v/WindowsOSServicing.svg?logo=PowerShell&style=flat-square
 [psgallery]: https://www.powershellgallery.com/packages/WindowsOSServicing
