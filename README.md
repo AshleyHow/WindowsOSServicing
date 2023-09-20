@@ -7,7 +7,7 @@
 
 ![alt text](https://github.com/AshleyHow/WindowsOSServicing/blob/main/WindowsOSServicing.png)
 
-Gets WindowsOS servicing information to check if OS is currently serviced. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
+Gets Windows OS servicing information to check if OS is currently serviced. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
 
 ## Installing the Module
 
@@ -41,7 +41,7 @@ Gets Windows OS servicing information (OS Name, Version, Service start date, Ser
 
   - Caption
     
-This parameter is optional. Return servicing information for specified operating system caption. Supported accepted values:
+This parameter is optional. Returns servicing information for specified operating system caption. Supported accepted values:
     
 
 | Windows Client OS Captions                          |                                                                                    
