@@ -3,7 +3,7 @@
 [![PowerShell Gallery][psgallery-badge]][psgallery]
 [![PowerShell Gallery Version][psgallery-version-badge]][psgallery]
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/00f84feff8074dceacd535b7bae724c1)](https://app.codacy.com/gh/AshleyHow/WindowsOSServicing/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Build status](https://ci.appveyor.com/api/projects/status/o8l8510lkoo7igy1?svg=true)](https://ci.appveyor.com/project/ah-uk/WindowsOSServicing)
+[![Build status](https://ci.appveyor.com/api/projects/status/o8l8510lkoo7igy1/branch/dev?svg=true)](https://ci.appveyor.com/project/ah-uk/windowsosbuild/branch/dev)
 
 ![alt text](https://github.com/AshleyHow/WindowsOSServicing/blob/main/WindowsOSServicing.png)
 
