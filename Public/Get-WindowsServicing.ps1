@@ -130,13 +130,13 @@ Function Get-WindowsServicing {
     }
     ElseIf ($Caption -match "Windows 10 Enterprise LTSC 2019") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
-        $TargetVersion = $Caption
+        $TargetVersion = "NA"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
     ElseIf ($Caption -match "Windows 10 Enterprise LTSC 2021")  {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
-        $TargetVersion = $Caption
+        $TargetVersion = "NA"
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
