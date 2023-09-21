@@ -7,32 +7,32 @@ Function Get-WindowsServicing {
         .PARAMETER Caption
             This parameter is optional. Returns servicing information for specified operating system caption. Supported accepted values:
 
-            Windows Client OS Captions          - Microsoft Windows 10 Home
-                                                - Microsoft Windows 10 Pro
-                                                - Microsoft Windows 10 Pro for Workstations
-                                                - Microsoft Windows 10 Pro Education
-                                                - Microsoft Windows 10 Enterprise
-                                                - Microsoft Windows 10 Education
-                                                - Microsoft Windows 10 Enterprise multi-session
+            Windows Client OS Captions          - Windows 10 Home
+                                                - Windows 10 Pro
+                                                - Windows 10 Pro for Workstations
+                                                - Windows 10 Pro Education
+                                                - Windows 10 Enterprise
+                                                - Windows 10 Education
+                                                - Windows 10 Enterprise multi-session
 
-                                                - Microsoft Windows 10 Enterprise 2015 LTSB
-                                                - Microsoft Windows 10 Enterprise 2016 LTSB
-                                                - Microsoft Windows 10 Enterprise LTSC 2019
-                                                - Microsoft Windows 10 Enterprise LTSC 2021
+                                                - Windows 10 Enterprise 2015 LTSB
+                                                - Windows 10 Enterprise 2016 LTSB
+                                                - Windows 10 Enterprise LTSC 2019
+                                                - Windows 10 Enterprise LTSC 2021
 
-                                                - Microsoft Windows 11 Home
-                                                - Microsoft Windows 11 Pro
-                                                - Microsoft Windows 11 Pro for Workstations
-                                                - Microsoft Windows 11 Pro Education
-                                                - Microsoft Windows 11 Enterprise
-                                                - Microsoft Windows 11 Education
-                                                - Microsoft Windows 11 Enterprise multi-session
+                                                - Windows 11 Home
+                                                - Windows 11 Pro
+                                                - Windows 11 Pro for Workstations
+                                                - Windows 11 Pro Education
+                                                - Windows 11 Enterprise
+                                                - Windows 11 Education
+                                                - Windows 11 Enterprise multi-session
 
-            Windows Server OS Captions          - Microsoft Windows Server Standard
-                                                - Microsoft Windows Server Datacenter
-                                                - Microsoft Windows Server 2016
-                                                - Microsoft Windows Server 2019
-                                                - Microsoft Windows Server 2022
+            Windows Server OS Captions          - Windows Server Standard
+                                                - Windows Server Datacenter
+                                                - Windows Server 2016
+                                                - Windows Server 2019
+                                                - Windows Server 2022
         .PARAMETER Version
             This parameter is required if the operating system has multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
         .PARAMETER CurrentVersion
@@ -41,41 +41,50 @@ Function Get-WindowsServicing {
             Get-WindowsServicing -CurrentVersion
             Show Windows OS servicing information for installed version of the operating system.
 
-            Get-WindowsServicing -Caption "Microsoft Windows 10 Pro" -Version "22H2"
-            Show Windows OS servicing information for Microsoft Windows 10 Pro Version 22H2.
+            Get-WindowsServicing -Caption "Windows 10 Pro" -Version "22H2"
+            Show Windows OS servicing information for Windows 10 Pro Version 22H2.
 
-            Get-WindowsServicing -Caption "Microsoft Windows Server 2022"
-            Show Windows OS servicing information for Microsoft Windows Server 2022.
+            Get-WindowsServicing -Caption "Windows Server 2022"
+            Show Windows OS servicing information for Windows Server 2022.
     #>
 
     Param (
         [CmdletBinding()]
         [Parameter(Mandatory = $false)]
-        [ValidateSet(
-            'Microsoft Windows 10 Home',
-            'Microsoft Windows 10 Pro',
-            'Microsoft Windows 10 Pro for Workstations',
-            'Microsoft Windows 10 Pro Education',
-            'Microsoft Windows 10 Enterprise',
-            'Microsoft Windows 10 Education',
-            'Microsoft Windows 10 Enterprise multi-session',
-            'Microsoft Windows 11 Home',
-            'Microsoft Windows 11 Pro',
-            'Microsoft Windows 11 Pro for Workstations',
-            'Microsoft Windows 11 Pro Education',
-            'Microsoft Windows 11 Enterprise',
-            'Microsoft Windows 11 Education',
-            'Microsoft Windows 11 Enterprise multi-session',
-            'Microsoft Windows 10 Enterprise 2015 LTSB',
-            'Microsoft Windows 10 Enterprise 2016 LTSB',
-            'Microsoft Windows 10 Enterprise LTSC 2019',
-            'Microsoft Windows 10 Enterprise LTSC 2021',
-            'Microsoft Windows Server 2016',
-            'Microsoft Windows Server 2019',
-            'Microsoft Windows Server 2022',
-            'Microsoft Windows Server Standard',
-            'Microsoft Windows Server Datacenter'
-        )]
+        [ValidateScript({
+            $validValues = @(
+                '*Windows 10 Home*',
+                '*Windows 10 Pro*',
+                '*Windows 10 Pro for Workstations*',
+                '*Windows 10 Pro Education*',
+                '*Windows 10 Enterprise*',
+                '*Windows 10 Education*',
+                '*Windows 10 Enterprise multi-session*',
+                '*Windows 11 Home*',
+                '*Windows 11 Pro*',
+                '*Windows 11 Pro for Workstations*',
+                '*Windows 11 Pro Education*',
+                '*Windows 11 Enterprise*',
+                '*Windows 11 Education*',
+                '*Windows 11 Enterprise multi-session*',
+                '*Windows 10 Enterprise 2015 LTSB*',
+                '*Windows 10 Enterprise 2016 LTSB*',
+                '*Windows 10 Enterprise LTSC 2019*',
+                '*Windows 10 Enterprise LTSC 2021*',
+                '*Windows Server 2016*',
+                '*Windows Server 2019*',
+                '*Windows Server 2022*',
+                '*Windows Server Standard*',
+                '*Windows Server Datacenter*'
+            )
+
+            ForEach ($validValue in $validValues) {
+                If ($_ -like $validValue) {
+                    Return $true
+                }
+            }
+            return $false
+        })]
         [String]$Caption,
 
         [Parameter(Mandatory = $false)]
