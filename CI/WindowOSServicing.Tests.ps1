@@ -1,5 +1,5 @@
 BeforeAll {
-    $Path =  (Get-Item $PsScriptRoot).parent.FullName + "\WindowOSServicing.psm1"
+    $Path =  (Get-Item $PsScriptRoot).parent.FullName + "\WindowsOSServicing.psm1"
     . Import-Module -Name $Path -Verbose
 }
 
