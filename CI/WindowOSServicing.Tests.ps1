@@ -218,7 +218,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
         Context "Microsoft Windows Server 2019" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2019"
-                $Results.Name | Should -Be "Microsoft Windows Server 2010"
+                $Results.Name | Should -Be "Microsoft Windows Server 2019"
                 $Results.Version | Should -Be "NA"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
@@ -239,9 +239,9 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
         }
         Context "Microsoft Windows Server Standard" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Standard"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Standard" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Standard"
-                $Results.Version | Should -Be "NA"
+                $Results.Version | Should -Be "20H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
@@ -250,9 +250,9 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
         }
         Context "Microsoft Windows Server Datacenter" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Datacenter"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Datacenter" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Datacenter"
-                $Results.Version | Should -Be "NA"
+                $Results.Version | Should -Be "20H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
