@@ -154,14 +154,14 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -match (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -notmatch (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
-            Throw "Get-OSServicing: CurrentVersion/Version parameter is required for this operating system"
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
@@ -171,14 +171,14 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -match (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -notmatch (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
-            Throw "Get-OSServicing: CurrentVersion/Version parameter is required for this operating system"
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
@@ -188,14 +188,14 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -match (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -notmatch (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
-            Throw "Get-OSServicing: CurrentVersion/Version parameter is required for this operating system"
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
@@ -205,14 +205,14 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -match (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -notmatch (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
-            Throw "Get-OSServicing: CurrentVersion/Version parameter is required for this operating system"
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
@@ -240,14 +240,14 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -match (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ($Caption -notmatch (Get-CIMInstance Win32_OperatingSystem).Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
-            Throw "Get-OSServicing: CurrentVersion/Version parameter is required for this operating system"
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
@@ -322,10 +322,4 @@ Function Get-WindowsServicing {
         }
     }
     $ServiceData
-
-    # Reset Variables
-    $Version = $null
-    $CurrentVersion = $null
-    #$TargetVersion = $null
-    #$ServiceData = $null
 }
