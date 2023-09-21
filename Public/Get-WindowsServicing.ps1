@@ -303,10 +303,10 @@ Function Get-WindowsServicing {
                     $startDate = $cols[1].InnerText.Trim()
                     $endDate = $cols[$EndDateColNo].InnerText.Trim()
                     If ($(Get-Date) -ge $endDate) {
-                        $Serviced = "No"
+                        $Serviced = "False"
                     }
                     Else {
-                        $Serviced = "Yes"
+                        $Serviced = "True"
                     }
                     # Create servicing data object
                     $ServiceData = [PsCustomObject]@{
