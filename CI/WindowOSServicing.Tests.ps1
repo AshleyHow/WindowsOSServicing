@@ -13,7 +13,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro" {
@@ -24,7 +24,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro for Workstations" {
@@ -35,7 +35,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro Education" {
@@ -46,7 +46,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Enterprise" {
@@ -57,7 +57,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 10 Education" {
@@ -68,7 +68,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 10 Pro Enterprise multi-session" {
@@ -79,7 +79,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Home" {
@@ -90,7 +90,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro" {
@@ -101,7 +101,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro for Workstations" {
@@ -112,7 +112,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro Education" {
@@ -123,7 +123,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Enterprise" {
@@ -134,7 +134,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Education" {
@@ -145,7 +145,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Pro Enterprise multi-session" {
@@ -156,7 +156,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
 
@@ -168,7 +168,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2015-ltsb"
             }
         }
         Context "Microsoft Windows 10 Enterprise 2016 LTSB" {
@@ -179,7 +179,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2016-ltsb"
             }
         }
         Context "Microsoft Windows 10 Enterprise LTSC 2019" {
@@ -190,7 +190,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
             }
         }
         Context "Microsoft Windows 10 Enterprise LTSC 2021" {
@@ -201,7 +201,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
             }
         }
         Context "Microsoft Windows Server 2016" {
@@ -212,7 +212,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
             }
         }
         Context "Microsoft Windows Server 2019" {
@@ -223,7 +223,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2019"
             }
         }
         Context "Microsoft Windows Server 2022" {
@@ -234,7 +234,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
             }
         }
         Context "Microsoft Windows Server Standard" {
@@ -245,7 +245,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
         Context "Microsoft Windows Server Datacenter" {
@@ -256,7 +256,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
         Context "CurrentVersion" {
@@ -282,7 +282,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro" {
@@ -293,7 +293,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro for Workstations" {
@@ -304,7 +304,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
         Context "Microsoft Windows 10 Pro Education" {
@@ -315,18 +315,18 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro Enterprise" {
+        Context "Microsoft Windows 10 Enterprise" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro Enterprise" -Version "22H2"
-                $Results.Name | Should -Be "Microsoft Windows 10 Pro Enterprise"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise"
                 $Results.Version | Should -Be "22H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 10 Education" {
@@ -337,7 +337,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 10 Pro Enterprise multi-session" {
@@ -348,7 +348,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Home" {
@@ -359,7 +359,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro" {
@@ -370,7 +370,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro for Workstations" {
@@ -381,7 +381,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
         Context "Microsoft Windows 11 Pro Education" {
@@ -392,18 +392,18 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro Enterprise" {
+        Context "Microsoft Windows 11 Enterprise" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Enterprise" -Version "22H2"
-                $Results.Name | Should -Be "Microsoft Windows 11 Pro Enterprise"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 Enterprise"
                 $Results.Version | Should -Be "22H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Education" {
@@ -414,7 +414,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
         Context "Microsoft Windows 11 Pro Enterprise multi-session" {
@@ -425,7 +425,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
 
@@ -437,7 +437,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2015-ltsb"
             }
         }
         Context "Microsoft Windows 10 Enterprise 2016 LTSB" {
@@ -448,7 +448,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2016-ltsb"
             }
         }
         Context "Microsoft Windows 10 Enterprise LTSC 2019" {
@@ -459,7 +459,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
             }
         }
         Context "Microsoft Windows 10 Enterprise LTSC 2021" {
@@ -470,7 +470,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
             }
         }
         Context "Microsoft Windows Server 2016" {
@@ -481,7 +481,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
             }
         }
         Context "Microsoft Windows Server 2019" {
@@ -492,7 +492,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2019"
             }
         }
         Context "Microsoft Windows Server 2022" {
@@ -503,7 +503,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
             }
         }
         Context "Microsoft Windows Server Standard" {
@@ -514,7 +514,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
         Context "Microsoft Windows Server Datacenter" {
@@ -525,7 +525,7 @@ Else {
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
-                $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
         Context "CurrentVersion" {
