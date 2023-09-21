@@ -3,7 +3,7 @@ Function Get-WindowsServicing {
         .SYNOPSIS
             Gets Windows OS servicing information to check if OS is currently serviced. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
         .DESCRIPTION
-            Gets Windows OS servicing information (OS Name, Version, Service start date, Service end date, Serviced, Lifecycle Policy URL) for for Windows client and server versions.
+            Gets Windows OS servicing information (OS Name, Version, Service start date, Service end date, Serviced, Lifecycle Policy URL) for Windows client and server versions.
         .PARAMETER Caption
             This parameter is optional. Returns servicing information for specified operating system caption. Supported accepted values:
 
