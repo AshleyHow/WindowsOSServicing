@@ -3,11 +3,11 @@
 [![PowerShell Gallery][psgallery-badge]][psgallery]
 [![PowerShell Gallery Version][psgallery-version-badge]][psgallery]
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/00f84feff8074dceacd535b7bae724c1)](https://app.codacy.com/gh/AshleyHow/WindowsOSServicing/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Build status](https://ci.appveyor.com/api/projects/status/o8l8510lkoo7igy1?svg=true)](https://ci.appveyor.com/project/ah-uk/WindowsOSServicing)
+[![Build status](https://ci.appveyor.com/api/projects/status/i9h33tdn0d5t08lc/branch/dev?svg=true)](https://ci.appveyor.com/project/ah-uk/windowsosservicing/branch/dev)
 
 ![alt text](https://github.com/AshleyHow/WindowsOSServicing/blob/main/WindowsOSServicing.png)
 
-Gets Windows OS servicing information to check if OS is currently serviced. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
+Gets Windows OS servicing information (OS Name, Version, Service start date, Service end date, Serviced, Lifecycle Policy URL) for Windows client and server versions. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
 
 ## Installing the Module
 
@@ -111,7 +111,7 @@ Lifecycle Policy URL : https://learn.microsoft.com/en-us/lifecycle/products/wind
 ```
 
 ```powershell
-PS C:\Users\Ashley> . Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -version 22H2
+PS C:\Users\Ashley> . Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version 22H2
 
 
 Name                 : Microsoft Windows 11 Pro
