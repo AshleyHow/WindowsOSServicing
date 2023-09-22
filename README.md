@@ -49,6 +49,7 @@ This parameter is optional. Returns servicing information for specified operatin
 | Microsoft Windows 10 Pro                            |
 | Microsoft Windows 10 Pro for Workstations           |
 | Microsoft Windows 10 Pro Education                  |
+| Microsoft Windows 10 Business                       |
 | Microsoft Windows 10 Enterprise                     |
 | Microsoft Windows 10 Education                      | 
 | Microsoft Windows 10 Enterprise multi-session       |
@@ -59,7 +60,8 @@ This parameter is optional. Returns servicing information for specified operatin
 | Microsoft Windows 11 Home                           |
 | Microsoft Windows 11 Pro                            |
 | Microsoft Windows 11 Pro for Workstations           |
-| Microsoft Windows 11 Pro Education                  | 
+| Microsoft Windows 11 Pro Education                  |
+| Microsoft Windows 10 Business                       |
 | Microsoft Windows 11 Enterprise                     |
 | Microsoft Windows 11 Education                      |
 | Microsoft Windows 11 Enterprise multi-session       | 
