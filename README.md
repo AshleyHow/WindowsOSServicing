@@ -111,7 +111,7 @@ Lifecycle Policy URL : https://learn.microsoft.com/en-us/lifecycle/products/wind
 ```
 
 ```powershell
-PS C:\Users\Ashley> . Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version 22H2
+PS C:\Users\Ashley> Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version 22H2
 
 
 Name                 : Microsoft Windows 11 Pro
@@ -123,7 +123,7 @@ Lifecycle Policy URL : https://learn.microsoft.com/en-us/lifecycle/products/wind
 ```
 
 ```powershell
-PS C:\Users\Ashley> . Get-WindowsServicing -Caption "Microsoft Windows Server 2022"
+PS C:\Users\Ashley> Get-WindowsServicing -Caption "Microsoft Windows Server 2022"
 
 
 Name                 : Microsoft Windows Server 2022
