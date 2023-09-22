@@ -49,6 +49,17 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
+        Context "Microsoft Windows 10 Business" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Business" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 Business"
+                $Results.Version | Should -Be "22H2"
+                $Results.'Service start date' | Should -Not -BeNullOrEmpty
+                $Results.'Service end date' | Should -Not -BeNullOrEmpty
+                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
+            }
+        }
         Context "Microsoft Windows 10 Enterprise" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise" -Version "22H2"
@@ -119,6 +130,17 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro Education"
+                $Results.Version | Should -Be "22H2"
+                $Results.'Service start date' | Should -Not -BeNullOrEmpty
+                $Results.'Service end date' | Should -Not -BeNullOrEmpty
+                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
+            }
+        }
+        Context "Microsoft Windows 11 Business" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 Business"
                 $Results.Version | Should -Be "22H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
@@ -318,6 +340,17 @@ Else {
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
+        Context "Microsoft Windows 10 Business" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Business" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 Business"
+                $Results.Version | Should -Be "22H2"
+                $Results.'Service start date' | Should -Not -BeNullOrEmpty
+                $Results.'Service end date' | Should -Not -BeNullOrEmpty
+                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
+            }
+        }
         Context "Microsoft Windows 10 Enterprise" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise" -Version "22H2"
@@ -388,6 +421,17 @@ Else {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro Education"
+                $Results.Version | Should -Be "22H2"
+                $Results.'Service start date' | Should -Not -BeNullOrEmpty
+                $Results.'Service end date' | Should -Not -BeNullOrEmpty
+                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
+            }
+        }
+        Context "Microsoft Windows 11 Business" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "22H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 Business"
                 $Results.Version | Should -Be "22H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
