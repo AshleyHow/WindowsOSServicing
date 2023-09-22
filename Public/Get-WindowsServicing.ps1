@@ -11,6 +11,7 @@ Function Get-WindowsServicing {
                                                 - Windows 10 Pro
                                                 - Windows 10 Pro for Workstations
                                                 - Windows 10 Pro Education
+                                                - Windows 10 Business
                                                 - Windows 10 Enterprise
                                                 - Windows 10 Education
                                                 - Windows 10 Enterprise multi-session
@@ -24,6 +25,7 @@ Function Get-WindowsServicing {
                                                 - Windows 11 Pro
                                                 - Windows 11 Pro for Workstations
                                                 - Windows 11 Pro Education
+                                                - Windows 11 Business
                                                 - Windows 11 Enterprise
                                                 - Windows 11 Education
                                                 - Windows 11 Enterprise multi-session
@@ -57,6 +59,7 @@ Function Get-WindowsServicing {
                 '*Windows 10 Pro*',
                 '*Windows 10 Pro for Workstations*',
                 '*Windows 10 Pro Education*',
+                '*Windows 10 Business*',
                 '*Windows 10 Enterprise*',
                 '*Windows 10 Education*',
                 '*Windows 10 Enterprise multi-session*',
@@ -64,6 +67,7 @@ Function Get-WindowsServicing {
                 '*Windows 11 Pro*',
                 '*Windows 11 Pro for Workstations*',
                 '*Windows 11 Pro Education*',
+                '*Windows 11 Business*',
                 '*Windows 11 Enterprise*',
                 '*Windows 11 Education*',
                 '*Windows 11 Enterprise multi-session*',
@@ -149,7 +153,7 @@ Function Get-WindowsServicing {
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
-    ElseIf (($Caption -match "Windows 10 Home") -or ($Caption -match "Windows 10 Pro")) {
+    ElseIf (($Caption -match "Windows 10 Home") -or ($Caption -match "Windows 10 Pro") -or ($Caption -match "Windows 10 Business")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
@@ -183,7 +187,7 @@ Function Get-WindowsServicing {
         $SecondTableNo = 1
         $EndDateColNo = 2
     }
-    ElseIf (($Caption -match "Windows 11 Home") -or ($Caption -match "Windows 11 Pro")) {
+    ElseIf (($Caption -match "Windows 11 Home") -or ($Caption -match "Windows 11 Pro") -or ($Caption -match "Windows 11 Business")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
