@@ -237,7 +237,7 @@ Function Get-WindowsServicing {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
         $TargetVersion = "NA"
         $SecondTableNo = 0
-        $EndDateColNo = 3
+        $EndDateColNo = 2
     }
     ElseIf (($Caption -match "Windows Server Standard") -or ($Caption -match "Windows Server Datacenter")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
@@ -303,21 +303,34 @@ Function Get-WindowsServicing {
                     ($TargetListing -like "*$WebpageListing*") -or ` # TargetListing match to WebpageListing
                     ($Caption -like "*$WebpageListing*"))            # Caption match to WebpageListing
                                                                                                              {
-                    # Get servicing data
+                    # Servicing Status
                     $startDate = $cols[1].InnerText.Trim()
                     $endDate = $cols[$EndDateColNo].InnerText.Trim()
-                    If ($(Get-Date) -ge $endDate) {
+
+                    If ($endDate -eq "In Support") {
+                        $Serviced = "True"
+                    }
+                    ElseIf ($(Get-Date) -ge $endDate) {
                         $Serviced = "False"
                     }
                     Else {
                         $Serviced = "True"
                     }
+
+                    # Service End Date
+                    If ($endDate -eq "In Support") {
+                        $ServiceEndDate = $endDate
+                    }
+                    Else {
+                        $ServiceEndDate = $(([DateTime]::Parse($endDate)).ToString("yyyy-MM-dd"))
+                    }
+
                     # Create servicing data object
                     $ServiceData = [PsCustomObject]@{
                         'Name' = $Caption
                         'Version' = $TargetVersion
                         'Service start date' = $(([DateTime]::Parse($startDate)).ToString("yyyy-MM-dd"))
-                        'Service end date' = $(([DateTime]::Parse($endDate)).ToString("yyyy-MM-dd"))
+                        'Service end date' = $ServiceEndDate
                         'Serviced' = $Serviced
                         'Lifecycle Policy URL' = $LifecycleURL
                     }
