@@ -13,6 +13,7 @@ Function Get-WindowsServicing {
                                                 - Windows 10 Pro Education
                                                 - Windows 10 Business
                                                 - Windows 10 Enterprise
+                                                - Windows 10 IoT Enterprise
                                                 - Windows 10 Education
                                                 - Windows 10 Enterprise multi-session
 
@@ -20,6 +21,9 @@ Function Get-WindowsServicing {
                                                 - Windows 10 Enterprise 2016 LTSB
                                                 - Windows 10 Enterprise LTSC 2019
                                                 - Windows 10 Enterprise LTSC 2021
+                                                - Windows 10 Enterprise LTSC
+                                                - Windows 10 IoT Enterprise LTSC 2021
+                                                - Windows 10 IoT Enterprise LTSC
 
                                                 - Windows 11 Home
                                                 - Windows 11 Pro
@@ -27,6 +31,7 @@ Function Get-WindowsServicing {
                                                 - Windows 11 Pro Education
                                                 - Windows 11 Business
                                                 - Windows 11 Enterprise
+                                                - Windows 11 IoT Enterprise
                                                 - Windows 11 Education
                                                 - Windows 11 Enterprise multi-session
 
@@ -61,6 +66,7 @@ Function Get-WindowsServicing {
                 '*Windows 10 Pro Education*',
                 '*Windows 10 Business*',
                 '*Windows 10 Enterprise*',
+                '*Windows 10 IoT Enterprise*',
                 '*Windows 10 Education*',
                 '*Windows 10 Enterprise multi-session*',
                 '*Windows 11 Home*',
@@ -69,12 +75,16 @@ Function Get-WindowsServicing {
                 '*Windows 11 Pro Education*',
                 '*Windows 11 Business*',
                 '*Windows 11 Enterprise*',
+                '*Windows 11 Iot Enterprise*',
                 '*Windows 11 Education*',
                 '*Windows 11 Enterprise multi-session*',
                 '*Windows 10 Enterprise 2015 LTSB*',
                 '*Windows 10 Enterprise 2016 LTSB*',
                 '*Windows 10 Enterprise LTSC 2019*',
                 '*Windows 10 Enterprise LTSC 2021*',
+                '*Windows 10 Enterprise LTSC*',
+                '*Windows 10 IoT Enterprise LTSC 2021*',
+                '*Windows 10 IoT Enterprise LTSC*',
                 '*Windows Server 2016*',
                 '*Windows Server 2019*',
                 '*Windows Server 2022*',
@@ -117,51 +127,69 @@ Function Get-WindowsServicing {
     }
 
     # Get Windows name/caption
-    If ([String]::IsNullOrEmpty($Caption)) {
+    Function Get-Caption {
         Try {
-            $Caption = (Get-CIMInstance Win32_OperatingSystem).Caption
+            $Caption = (Get-CIMInstance -Classname Win32_OperatingSystem -Erroraction Stop).Caption
         }
         Catch {
+            $Caption = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ProductName
+        }
+        Return $Caption
+        If ([String]::IsNullOrEmpty($Caption)) {
             Throw "Get-OSServicing: Unable to detect Operating System. Error: $($_.Exception.Message)"
         }
+    }
+
+    # Get caption for current OS
+    If ($CurrentVersion) {
+        $Caption = Get-Caption
     }
 
     # Find Windows name/caption and set variables
     If ($Caption -match "Windows 10 Enterprise 2015 LTSB") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2015-ltsb"
-        $TargetVersion = "NA"
+        $TargetVersion = "1507"
         $TargetListing = "Windows 10 2015 LTSB"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
     ElseIf ($Caption -match "Windows 10 Enterprise 2016 LTSB") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2016-ltsb"
-        $TargetVersion = "NA"
+        $TargetVersion = "1607"
         $TargetListing = "Windows 10 2016 LTSB"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf ($Caption -match "Windows 10 Enterprise LTSC 2019") {
+    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2019") -or ($Caption -match "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "1809")) {
+        $FullCaption = "Windows 10 Enterprise LTSC 2019"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
-        $TargetVersion = "NA"
+        $TargetVersion = "1809"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf ($Caption -match "Windows 10 Enterprise LTSC 2021")  {
+    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2021") -or ($Caption -match "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+        $FullCaption = "Windows 10 Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
-        $TargetVersion = "NA"
+        $TargetVersion = "21H2"
         $SecondTableNo = 0
         $EndDateColNo = 2
+    }
+    ElseIf (($Caption -match "Windows 10 IoT Enterprise LTSC 2021") -or ($Caption -match "Windows 10 IoT Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+        $FullCaption = "Windows 10 IoT Enterprise LTSC 2021"
+        $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
+        $TargetVersion = "21H2"
+        $SecondTableNo = 0
+        $EndDateColNo = 3
     }
     ElseIf (($Caption -match "Windows 10 Home") -or ($Caption -match "Windows 10 Pro") -or ($Caption -match "Windows 10 Business")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
@@ -175,10 +203,27 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
+            Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
+        }
+        Else {
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
+        }
+        $SecondTableNo = 1
+        $EndDateColNo = 2
+    }
+    ElseIf ($Caption -match "Windows 10 IoT Enterprise") {
+        $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise"
+        If (![String]::IsNullOrEmpty($Version)) {
+            $TargetVersion = $Version
+        }
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
+            $TargetVersion = Get-Version
+        }
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
@@ -192,10 +237,10 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
@@ -209,10 +254,27 @@ Function Get-WindowsServicing {
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
+            Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
+        }
+        Else {
+            Throw "Get-OSServicing: Version parameter is required for this operating system"
+        }
+        $SecondTableNo = 1
+        $EndDateColNo = 2
+    }
+    ElseIf ($Caption -match "Windows 11 IoT Enterprise") {
+        $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise"
+        If (![String]::IsNullOrEmpty($Version)) {
+            $TargetVersion = $Version
+        }
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
+            $TargetVersion = Get-Version
+        }
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
@@ -223,31 +285,31 @@ Function Get-WindowsServicing {
     }
     ElseIf ($Caption -match "Windows Server 2016") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
-        $TargetVersion = "NA"
+        $TargetVersion = "1607"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
     ElseIf ($Caption -match "Windows Server 2019") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2019"
-        $TargetVersion = "NA"
+        $TargetVersion = "1809"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
     ElseIf ($Caption -match "Windows Server 2022") {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
-        $TargetVersion = "NA"
+        $TargetVersion = "21H2"
         $SecondTableNo = 0
-        $EndDateColNo = 2
+        $EndDateColNo = 3
     }
     ElseIf (($Caption -match "Windows Server Standard") -or ($Caption -match "Windows Server Datacenter")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
         If (![String]::IsNullOrEmpty($Version)) {
             $TargetVersion = $Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -match $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -match $Caption)) {
             $TargetVersion = Get-Version
         }
-        ElseIf (($CurrentVersion -eq $true) -and ((Get-CIMInstance Win32_OperatingSystem).Caption -notmatch $Caption)) {
+        ElseIf (($CurrentVersion -eq $true) -and ($(Get-Caption) -notmatch $Caption)) {
             Throw "Get-OSServicing: CurrentVersion parameter is only supported when run from matching operating system"
         }
         Else {
@@ -301,8 +363,10 @@ Function Get-WindowsServicing {
                 If (($TargetVersion -like "*$WebpageListing*") -or ` # Version match to WebpageListing
                     ($WebpageListing -like "*$TargetVersion*") -or ` # WebpageListing match to version
                     ($TargetListing -like "*$WebpageListing*") -or ` # TargetListing match to WebpageListing
-                    ($Caption -like "*$WebpageListing*"))            # Caption match to WebpageListing
-                                                                                                             {
+                    ($Caption -like "*$WebpageListing*") -or ` # Caption match to WebpageListing
+                    ($FullCaption -like "*$WebpageListing*")) # FullCaption match to WebpageListing (later LTSC releases)
+                                                                                                                          {
+
                     # Servicing Status
                     $startDate = $cols[1].InnerText.Trim()
                     $endDate = $cols[$EndDateColNo].InnerText.Trim()
