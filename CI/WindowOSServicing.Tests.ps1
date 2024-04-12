@@ -250,8 +250,8 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
         }
         Context "Microsoft Windows 10 IoT Enterprise LTSC 2021" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise"
-                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC 2021"
+                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC 2021"
                 $Results.Version | Should -Be "21H2"
                 $Results.'Service start date' | Should -Not -BeNullOrEmpty
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
@@ -570,6 +570,17 @@ Else {
                 $Results.'Service end date' | Should -Not -BeNullOrEmpty
                 $Results.'Serviced' | Should -Not -BeNullOrEmpty
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
+            }
+        }
+        Context "Microsoft Windows 10 IoT Enterprise LTSC 2021" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC 2021"
+                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC 2021"
+                $Results.Version | Should -Be "21H2"
+                $Results.'Service start date' | Should -Not -BeNullOrEmpty
+                $Results.'Service end date' | Should -Not -BeNullOrEmpty
+                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
             }
         }
         Context "Microsoft Windows Server 2016" {
