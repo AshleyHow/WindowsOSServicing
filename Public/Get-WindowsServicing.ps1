@@ -160,21 +160,21 @@ Function Get-WindowsServicing {
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2019") -or ($Caption -match "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "1809")) {
+    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2019") -or ($Caption -eq "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "1809")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2019"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
         $TargetVersion = "1809"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2021") -or ($Caption -match "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2021") -or ($Caption -eq "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
-    ElseIf (($Caption -match "Windows 10 IoT Enterprise LTSC 2021") -or ($Caption -match "Windows 10 IoT Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+    ElseIf (($Caption -match "Windows 10 IoT Enterprise LTSC 2021") -or ($Caption -eq "Windows 10 IoT Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
         $FullCaption = "Windows 10 IoT Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
