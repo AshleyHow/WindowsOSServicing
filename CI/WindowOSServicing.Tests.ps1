@@ -325,6 +325,66 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
             }
         }
+        Describe "Code Signing Certificate Test - WindowsOSServicing.psm1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\WindowsOSServicing.psm1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - WindowsOSServicing.psd1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\WindowsOSServicing.psd1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - Get-WindowsServicing.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\Public\Get-WindowsServicing.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - Import-HtmlAgilityPack.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\Private\Import-HtmlAgilityPack.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - WindowOSServicing.Tests.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\CI\WindowOSServicing.Tests.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
     }
 }
 Else {
@@ -649,13 +709,73 @@ Else {
                 $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
             }
         }
+        Describe "Code Signing Certificate Test - WindowsOSServicing.psm1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\WindowsOSServicing.psm1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - WindowsOSServicing.psd1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\WindowsOSServicing.psd1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - Get-WindowsServicing.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\Public\Get-WindowsServicing.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - Import-HtmlAgilityPack.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\Private\Import-HtmlAgilityPack.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
+        Describe "Code Signing Certificate Test - WindowOSServicing.Tests.ps1" {
+            Context "File Signature Check" {
+                $filePath = (Get-ChildItem -Path $PSScriptRoot\CI\WindowOSServicing.Tests.ps1)
+                It "Verifies that the file is signed with a code signing certificate" {
+                    $signature = Get-AuthenticodeSignature -FilePath $filePath
+                    $signature | Should Not Be $null
+                    $signature.SignerCertificate | Should Not Be $null
+                    $signature.SignerCertificate | Should Be $([System.Security.Cryptography.X509Certificates.X509Certificate2])
+                    $signature.Status | Should Be "Valid"
+                }
+            }
+        }
     }
 }
 # SIG # Begin signature block
 # MIImcgYJKoZIhvcNAQcCoIImYzCCJl8CAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU4qHgWJ/pL3nWxKVGA6tIiRJP
-# Y9GggiAtMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUrVlOPd4RsKrOWUcbk7hge5rh
+# yJCggiAtMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
 # AQwFADBlMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMSQwIgYDVQQDExtEaWdpQ2VydCBBc3N1cmVk
 # IElEIFJvb3QgQ0EwHhcNMjIwODAxMDAwMDAwWhcNMzExMTA5MjM1OTU5WjBiMQsw
@@ -831,31 +951,31 @@ Else {
 # QS4xJDAiBgNVBAMTG0NlcnR1bSBDb2RlIFNpZ25pbmcgMjAyMSBDQQIQeAuTgzem
 # d0ILREkKU+Yq2jAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKA
 # ADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYK
-# KwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUFUykWePUK4KYtn9Jop3tdQ6HwYww
-# DQYJKoZIhvcNAQEBBQAEggGA4UAMYioclR/2KylsMQBOPBkFus1ZMejntZQp/52i
-# QOkFJHHcusEbzuFpqIXHVkS4JkB3vmHyfOYA2F8szVkix3d5dKhx5pdbKMVjLgQM
-# TYhvL53tXe1sxdqYBvZE2QLuUSATQkc4kIKmjl5gkvBMDLcOzB10uUw3ilyOaWNK
-# 6I8FIpa1PJJVzfuJwgnjcTAKI2B2x2GV0kybR3WrVgBbyAsBDPun9KLFsDun/Ju5
-# MPBpjEq+7c7ydoq/o8huUBx9Lr4CItxtOPE/NPIKD9dRjz7kLSHKV9uXlwhGHGZS
-# qsm9NAdOCJueZmIZj3evUY5/D9OuU7k61sMoBqQAD3G4GF/OfMXc1NFbih0UKZu+
-# tahuzfPt3v1lAWY1BXELud86bIF8Uf1sQ6cXhUQvpYFqujd9RPCXnrpjKdnpTp/w
-# MDYSsrMQvqyfLHWzdLJQH5MD/EsPUgl/77pa7KHL6mQMo5c2wvKblYRHUSczzyQu
-# rTo3o2W+uzoxSKw+Z+7wqx1uoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEB
+# KwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU3SWHR6BjzbxUjbnjehGH1nprES4w
+# DQYJKoZIhvcNAQEBBQAEggGArQGZAo10nwJ7cLkvyth/2BITKw3pSelKFl9WkK0J
+# hhkKAHGu3SxWONZ6aJ2ciaDsUpJs14oYiNCaTFwG6i5qcEh9VQ8cJ6gbJAZlMcaW
+# HS4qVkMutGs3BVJBdtu3rPVSpCKtj9WuXsufppjorHJWZ9tZeHuvQ9ckirNsqfMX
+# /vdyPvZr1cEQGyFtHBheTOTGyjdlPk59LtnQ6rm4Xa1blMeczHfIvBwtyQt6B6yk
+# rGYQssvvwE3W5RBdT0h/P1juGdfoqtDgEvpn3yRBIV/XvZlzengwB6Q9H8/aTozd
+# 4ZSPB4YMTvPBSppDsulL819vYW7J80b92jiJ9R/6RmLxqoKN8Sebom0GyRr5R1H6
+# /wxk45XXMrLo7GAY0Dk6hiE1OX5XEVKXR3CRuQ0pWNAAQlzht7SSU7EXED6A9Bma
+# HjRKrRc3lnT5en2unfPpfKC/oDkFf/nvGB8sEmmRipgopMcN/iaqY8JFWaNvr8wY
+# nelnyUdi7mkG0yE1KmYAYSwPoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEB
 # MHcwYzELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYD
 # VQQDEzJEaWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFt
 # cGluZyBDQQIQBUSv85SdCDmmv9s/X+VhFjANBglghkgBZQMEAgEFAKBpMBgGCSqG
-# SIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDQxNTIzMTE1
-# M1owLwYJKoZIhvcNAQkEMSIEIBqlwXAr4ohea4b5Wt8PLjJq5acBZy3ia5gm6C9n
-# 2JmIMA0GCSqGSIb3DQEBAQUABIICAJwBl7tqJYjteKqabz7yS+W13H3+UFIuxXrP
-# LbdK115snpVUqLhbbMmNK4NwBSxUlWSiID7PEd39N0MmDS/PWn4TjAwmG0Ei9lT5
-# fwUp39oYVC55KWLKdQ8CKnE8gxk3RDo/Zv4fYYM7ouSx5LaMdmWaodZESMqVhR6H
-# 28H9CeGrvAYL7W14q2Mf+twcEhLf+cQ0VODigtvE4OpXeFC0zY83M3hE1gZETnZy
-# 5RMwvKfl6y+26QhLf1A7p5O1f7IoQFgNdU8po/3t2q/aJzRh36klOnK2ITRBTayg
-# lWVQANc3cMtT9NLunULoapuF7w79kO5fAM4a3g3myivIhYeqQbTFXUjqJIXavSY+
-# Gd1rB1rSSM6do3DUHCa/KAEVj7nC5DRT2ggpeTh28YT/Xt0Njy78Y+w0T9vkJ6eg
-# i0TLL3arY5TVa3c6sltiY5Uc2idSKcpNn3iFSouh8LdCfeQ1i1/qLjnw8gdiGcwh
-# L7075NaCp4lKFow9jKOkbcCoSDNntdA+nvnlbk2aK095i4qr1BSTebB8DYGqkZ2e
-# Uhhyn+cYX5oi7TV3XHR5Muo+7k18EF4oG6ZhNZ5aa9GGqaoIBZhUYlqdyQCk8mYE
-# KaGvN8YaMlFLlTJCQQ/RHUYbw00G8dORAtxFx3MP+H4mm4WdSEZDDom+KVbs6EZX
-# Me/JOqow
+# SIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDQxNzIzMjIx
+# NVowLwYJKoZIhvcNAQkEMSIEIPOV2PVuAwYWArXoE03ZdKI7HUgIojWOXzxbudxF
+# 7dGMMA0GCSqGSIb3DQEBAQUABIICAB0bArGsrzAsVpdVe5lEOMFiFNOQ0VV+ZEDh
+# 3gSWWhUGmOLY/eE4jvasW4Lhmg057wDFVqVZHXdQJwc09J+6T0dAY0I8V9y89pv3
+# +cGd+3A/swq6b4879uyIOcditgzBAvvqVvACTRt7oob1LfGwBKt4Q967slYmnq5x
+# WRXu6Lrmc0JRpBat+C1u237D+TEWPXQl0Waa58nUs3Y0tDe5fkU+43wHkJvLq/HR
+# bqtSXKYBm2R5Z5EDjUh7/iLWR98BNOb9C8yf61L4IdZoYzWeQ2A1xkzzOlX4ZUEC
+# daFdR4ITRppnrNq2XJ3ejMi8LRrywYDg/CZHZY3GEKwwSuAeaq2hHcNV0XB7ugne
+# 6wOuuDPi34PyvVj4Yn/+yvQJaWTLlUvyKB4rGKMkRAKFmGIrhvG8Z1fQmEpUCYHi
+# bJH1bx5Kpmx2Iq03KZYKpyqsXI27FI/4hPD1OfPq/f8IGjKPXqUOKPMY7l1cQaS/
+# eFRHYuG9VbtsaL76/mETcmOpZFm/c9I4ut1jq9Go/3kZIyz6KRV7Xq7MeNgeQrkn
+# UJ8OvwAWGKo90f0yfYOegZYMlSSkudRAV+FSnUVaAEIduGD/jJXWZrNTnebXlLjw
+# RYrga6DD3E6H5AwgzluGcU9NlhZSXEzsX/Ypb7gloVmV4yN3SxXq+uR+Dv9hxmyI
+# uAzPvqz7
 # SIG # End signature block
