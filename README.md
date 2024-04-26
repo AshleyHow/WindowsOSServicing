@@ -9,6 +9,8 @@
 
 Gets Windows OS servicing information (OS Name, Version, Service start date, Service end date, Serviced, Lifecycle Policy URL) for Windows client and server versions. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
 
+The project is now fully signed using a code singing certificate. If you have found this project useful please [:heart:Sponsor](https://github.com/sponsors/AshleyHow) to help fund future code signing certificates.
+
 ## Installing the Module
 
 ### PowerShell Support
