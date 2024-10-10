@@ -12,7 +12,7 @@ install:
       [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
       Install-Module Pester -Force
 
-build:
+build: script
       # MSBuild verbosity level
       verbosity: detailed
 
