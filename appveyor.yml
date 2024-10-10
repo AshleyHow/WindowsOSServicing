@@ -14,6 +14,9 @@ install:
 
 build: off
 
+# MSBuild verbosity level
+verbosity: detailed
+
 test_script:
 - ps: |
       Import-Module -Name "Pester" -Force
