@@ -705,6 +705,8 @@ Else {
                     $sig = $signature | Select-Object *
                     Write-Debug $sig
                     Write-Output $sig
+                    Write-Verbose $sig
+                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
@@ -718,6 +720,8 @@ Else {
                     $sig = $signature | Select-Object *
                     Write-Debug $sig
                     Write-Output $sig
+                    Write-Verbose $sig
+                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
