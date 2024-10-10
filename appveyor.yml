@@ -16,6 +16,7 @@ build: off
 
 test_script:
 - ps: |
+      Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psd1" | Select-Object *
       Import-Module -Name "Pester" -Force
       Import-Module -Name "C:\projects\windowsosservicing"
       $testResultsFile = ".\TestsResults_PS.xml"
