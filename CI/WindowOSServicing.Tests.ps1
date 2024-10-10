@@ -329,7 +329,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psm1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $signature.SignatureType| Should -Be "Authenticode"
+                    $signature.SignatureType | Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
             }
@@ -339,7 +339,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psd1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $signature.SignatureType| Should -Be "Authenticode"
+                    $signature.SignatureType | Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
             }
@@ -349,7 +349,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\Public\Get-WindowsServicing.ps1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $signature.SignatureType| Should -Be "Authenticode"
+                    $signature.SignatureType | Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
             }
@@ -359,7 +359,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\Private\Import-HtmlAgilityPack.ps1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $signature.SignatureType| Should -Be "Authenticode"
+                    $signature.SignatureType | Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
             }
@@ -369,7 +369,7 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\CI\WindowOSServicing.Tests.ps1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $signature.SignatureType| Should -Be "Authenticode"
+                    $signature.SignatureType | Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
             }
@@ -752,8 +752,8 @@ Else {
 # SIG # Begin signature block
 # MIImbAYJKoZIhvcNAQcCoIImXTCCJlkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQURSbDvTjQ56tcUsW9n10+82bT
-# gLKggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAC/Dk1txNOj56W0rgG6fYbjR
+# APWggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
 # AQwFADBlMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMSQwIgYDVQQDExtEaWdpQ2VydCBBc3N1cmVk
 # IElEIFJvb3QgQ0EwHhcNMjIwODAxMDAwMDAwWhcNMzExMTA5MjM1OTU5WjBiMQsw
@@ -929,30 +929,30 @@ Else {
 # BgNVBAMTG0NlcnR1bSBDb2RlIFNpZ25pbmcgMjAyMSBDQQIQeAuTgzemd0ILREkK
 # U+Yq2jAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkq
 # hkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGC
-# NwIBFTAjBgkqhkiG9w0BCQQxFgQUCqmfNaqw5ZCuZHr3xE2CPKGQl84wDQYJKoZI
-# hvcNAQEBBQAEggGAQm/L7CdumKdJSibZjDYlo7I9djLn7Cj8tHFwaa6Hn+RtxR2k
-# 9vKb7ZQ/ZI4IUPmcoo44yKFYrSB7rTn/Ek29o64x5bMMu/qHsOFOxqDdOMMX0HmQ
-# 7nKVsFOeo8WrczBlS66T3Vjg4be/aV4E8qH4IgFIREehFbWGVekh23SxYO3vYucg
-# /IU6I3sHIRAuij1YGr/0i61IIJSj8F4hW7rMAMAmhwjXgvn/NaYfdnJr6uYXd3hc
-# pv3TJWSvoMQWrWGnfVGydEsjzWrHBrv0v0YN4lUqqfKzqTxkqYAPtd4fu2H3o2/u
-# ltt3iXW0gDcJsaT7i/y1YTJA3pMNEGjxsVfg8uSvagWUJ4JtnM3mMj18l1Vn2QRB
-# US7yMvFZWs86bqhAgChnZIql0myACJuzPtDBiiR2dTOJTnhesqJemVDCg3AvKfVX
-# ob+q3loh1JYhn6WT7ARnc7eJ1BucyczTh7+dmSRnudkgP3KNDvY2JR/3qi7twRWo
-# 09PQUz1hSWnVTi0eoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# NwIBFTAjBgkqhkiG9w0BCQQxFgQUIVc/vkYLga1Dq1ncvDl9ySZ+k8EwDQYJKoZI
+# hvcNAQEBBQAEggGAtGsbZb/fmXJfJCVzkiJEiqDrbkQZYnhhn3V1adOvij5QESoN
+# HSk0pz2jvbRuo7Ocurk/wuYsq9o3mY1mNEZfBeEyN6PbA5upw3LRMK1k+/emzKgb
+# s6vO2fxTF+fDgQzOb/IxOMj+TCZ2D67kKtYYL5tLuCBfyCfa1YYgCgRmHXqFVOXw
+# RjzeL0OAkXc/Nv6W57nt0oesnMVhjzh/GAYw5Jx0PaBPm8RNeYdDogn3DGbucOiw
+# Is8LU+9QnJxNR6D+9gHySDk/ZOcsM49KhgqcWvEXljzIL5IE93DmnaUPSM7eWUL7
+# hzm7Qlpwr9zEKcYZW3qrwmmxQZEH3HNDC51zeKVhUSnN4EM9Ai/+qokck4Lbfn6A
+# PJSbfcoHYkZrVA6q9qC0EuUoiLuUpSta5K+gtoCv3PesIMaz0MR6hpmZAHdOnOaz
+# +PgCw2sq4cMYdG7fRGVJwDNV/u/czZMHMyVFIQ2TmzkFwJGWZlHEU1Rkb3fYyY3O
+# YkhJkA2x5IDPx+BDoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQC65mvFq6f5WHxvnpBOMzBDANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxMDE5NDczN1owLwYJ
-# KoZIhvcNAQkEMSIEIDSa82u0JGrt4cEmAsv1WqDOGu69rg0R/Lp9E5J/RVhXMA0G
-# CSqGSIb3DQEBAQUABIICAIW1+f07/faV+uzv1LGm7CWndIlP7/uBd83MhMMrTCpI
-# HqaYtV+W3HwKqZaBb19R2F/w0nlqiaQe6BaJzAqdEzUEiO8OPfNV96vjM0AEiBdD
-# DlU9Ehx+YGvCsnNeKtMuRN2jLi6XN02xCeAdBy+wBTQWv+MR+e7qIoT1oYVPwMqA
-# CF87C4lnwM/QAAcwUMO5ElYA9Aed4ZmUhB2UVCPqFQRMcY4t4G/nriQuWc+4y3tU
-# FGSKvp9hwQPIc37GxX+scmWDxfg10e7p8nP2wjCJrAAEZlZ/0CJFtTEco9WE+XdU
-# Ve1ZZJXL3zlXTr/KL3fk6njQKqMEh7hkjH3cvs6G/4tDRwc3KO8RQ+QG1neWsBhT
-# jF5RNvnqXDvtchwTpCDZS66/MD6G3LlWzz9ZoANU4RmFYklrjJMHyFi6BX8ixJbw
-# rrxedMEohzOpgZgvTISSdc7unlzYzuMEEiVgc07RRTN4HMC4Az6lD3TV9Hw8qN3V
-# XO00UzmhCWCpRIaBqUhbMsWgGoeDY4CeJBHc3aWFw/RoHoEl9rWyZ17Iim2yAtCG
-# CP0Fi4SZY156fapju1TMNGzsyJW/AEAQn8DqyFfY0vVBS5MdM0nkRR98C0eiSEhu
-# 6ysgsh22xWJ4cfrWzUgahORkxvZDRQrldEs9cssNJ9VU1nmKoP+kKdbqB4PVvHeD
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxMDIwMTUyMlowLwYJ
+# KoZIhvcNAQkEMSIEIImivXlXPeNPjsSRn7R8fXLdL4Ihl4DkWE8UQOaZ6cFYMA0G
+# CSqGSIb3DQEBAQUABIICAKABN6h2aR1YSpTSWfhfXgwg6TBpCiBIYU1laCCqbTqb
+# jbR9eCJ7WgBeByPOTvO6NiCdL7Gtx8lcS6GJ1tvdk0ss7ODr0rrgihkWj9PtHmpd
+# lD6qn7DobWzdNs7tWAmfmpom3nPsu/IBe82SxX8Zwleq7SNAy774J0D6qGnyE2uE
+# 6LUwNKO8bm7f/vPqPMVBujn0UkM/0qasuwIjxkDH/70uYFBn9uccfKRlQh5bFuoW
+# wcvkNY6QMUKe1ZOh8i/5WeraRhCkcPlP0uzJBUSPMh1dJn1iZ9uxx3wb9TFZRjU7
+# 3x1TiYjMeXYYsBb2GhaOadmnLIpXtgpazKUbLiK0PwYbeU2Je2HiBEsk8AFgFqO4
+# kpw5cpsdFycN0u9f94n9PHi/lR9t3LOPz3O8YIw53xVwkDkBP1jm2/xEjRShTHda
+# 9bwz9IGnRzUkvnJ4pCROySszWvOXyRB34BY5hg6qy9WSrBZtMOpRmxLuido1bIy9
+# v5KnIVh6E0nkUIYd985eWTiPEDE+FwoV97RT5dj5CCCg+39XzmpjgzFonCaIZNhi
+# gK4Sf6JA8S40TCPqoZKeByh6IS3KcTh6+/Jx48S47Met+MsAyOXPZQAqrI/czu1D
+# mHZboOrJTUnhG9pb9zvIYKwqUb5D7ApCqwXKE2jT/VPo4vmcj8lM67ndR0n77Z45
 # SIG # End signature block
