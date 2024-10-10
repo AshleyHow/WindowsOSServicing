@@ -329,6 +329,11 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psm1"
                     $signature | Should -Not -BeNullOrEmpty
+                    $sig = $signature | Select-Object *
+                    Write-Debug $sig
+                    Write-Output $sig
+                    Write-Verbose $sig
+                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
@@ -339,6 +344,11 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psd1"
                     $signature | Should -Not -BeNullOrEmpty
+                    $sig = $signature | Select-Object *
+                    Write-Debug $sig
+                    Write-Output $sig
+                    Write-Verbose $sig
+                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
@@ -702,11 +712,6 @@ Else {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psm1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $sig = $signature | Select-Object *
-                    Write-Debug $sig
-                    Write-Output $sig
-                    Write-Verbose $sig
-                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
@@ -717,11 +722,6 @@ Else {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psd1"
                     $signature | Should -Not -BeNullOrEmpty
-                    $sig = $signature | Select-Object *
-                    Write-Debug $sig
-                    Write-Output $sig
-                    Write-Verbose $sig
-                    Write-Verbose "Test"
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
