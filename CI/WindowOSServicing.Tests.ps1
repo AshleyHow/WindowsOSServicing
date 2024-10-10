@@ -702,6 +702,9 @@ Else {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psm1"
                     $signature | Should -Not -BeNullOrEmpty
+                    $sig = $signature | Select-Object *
+                    Write-Debug $sig
+                    Write-Output $sig
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
@@ -712,6 +715,9 @@ Else {
                 It "Results" {
                     $signature = Get-AuthenticodeSignature -FilePath "$((Split-Path -Path $PSScriptRoot -Parent).TrimEnd('\'))\WindowsOSServicing.psd1"
                     $signature | Should -Not -BeNullOrEmpty
+                    $sig = $signature | Select-Object *
+                    Write-Debug $sig
+                    Write-Output $sig
                     $signature.SignatureType| Should -Be "Authenticode"
                     $signature.Status | Should -Be "Valid"
                 }
