@@ -4,7 +4,7 @@ skip_commits:
     - "**/*.png"
     - "**/*LICENCE"
 
-image: Windows
+image: Visual Studio 2022
 
 install:
 - ps: |
