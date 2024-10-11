@@ -4,6 +4,8 @@ skip_commits:
     - "**/*.png"
     - "**/*LICENCE"
 
+image: Windows
+
 install:
 - ps: |
       [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
