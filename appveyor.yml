@@ -20,10 +20,7 @@ test_script:
 - ps: |
       Import-Module -Name "Pester" -Force
       Import-Module -Name "C:\projects\windowsosservicing"
-      $psd1Path = "C:\projects\windowsosservicing\WindowsOSServicing.psd1"
-      $psm1Path = "C:\projects\windowsosservicing\WindowsOSServicing.psm1"
-      Get-AuthenticodeSignature -FilePath $psd1Path | Select-Object *
-      Get-AuthenticodeSignature -FilePath $psm1Path | Select-Object *
+      $ResultsPS = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -Show All -PassThru
       $testResultsFile = ".\TestsResults_PS.xml"
       $ResultsPS = Invoke-Pester -Show All -Verbose -PassThru | Tee-Object -FilePath $testResultsFile
       (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
@@ -34,7 +31,7 @@ test_script:
       Import-Module -Name "Pester" -Force
       Import-Module -Name "C:\projects\windowsosservicing"
       $testResultsFile = ".\TestsResults_PWSH.xml"
-      $ResultsPWSH = Invoke-Pester -Show All -Verbose -PassThru | Tee-Object -FilePath $testResultsFile
+      $ResultsPS = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -Show All -PassThru
       (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
       If ($ResultsPWSH.FailedCount -gt 0) {
           throw "$($res.FailedCount) tests failed."
