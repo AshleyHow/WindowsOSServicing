@@ -163,21 +163,21 @@ Function Get-WindowsServicing {
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and ($(Get-Version) -eq "1809" -or $Version -eq "1809")) {
+    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and (($(Get-Version) -eq "1809" -and $CurrentVersion -eq $true) -or $Version -eq "1809")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2019"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
         $TargetVersion = "1809"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and ($(Get-Version) -eq "21H2" -or $Version -eq "21H2")) {
+    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and (($(Get-Version) -eq "21H2" -and $CurrentVersion -eq $true) -or $Version -eq "21H2")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
-    ElseIf ($Caption -match "Windows 10 IoT Enterprise LTSC" -and ($(Get-Version) -eq "21H2" -or $Version -eq "21H2")) {
+    ElseIf ($Caption -match "Windows 10 IoT Enterprise LTSC" -and (($(Get-Version) -eq "21H2" -and $CurrentVersion -eq $true) -or $Version -eq "21H2")) {
         $FullCaption = "Windows 10 IoT Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
@@ -235,14 +235,14 @@ Function Get-WindowsServicing {
         $SecondTableNo = 1
         $EndDateColNo = 2
     }
-    ElseIf ($Caption -match "Windows 11 Enterprise LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2")) {
+    ElseIf ($Caption -match "Windows 11 Enterprise LTSC" -and (($(Get-Version) -eq "24H2" -and $CurrentVersion -eq $true) -or $Version -eq "24H2")) {
         $FullCaption = "Windows 11 Enterprise LTSC 2024"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-ltsc-2024"
         $TargetVersion = "24H2"
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
-    ElseIf (($Caption -match "Windows 11 IoT Enterprise LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2")) -or ($Caption -match "Windows 11 IoT Enterprise Subscription LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2"))) {
+    ElseIf (($Caption -match "Windows 11 IoT Enterprise LTSC" -and (($(Get-Version) -eq "24H2" -and $CurrentVersion -eq $true) -or $Version -eq "24H2")) -or ($Caption -match "Windows 11 IoT Enterprise Subscription LTSC" -and (($(Get-Version) -eq "24H2" -and $CurrentVersion -eq $true) -or $Version -eq "24H2"))) {
         $FullCaption = "Windows 11 IoT Enterprise LTSC 2024"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
         $TargetVersion = "24H2"
@@ -425,8 +425,8 @@ Function Get-WindowsServicing {
 # SIG # Begin signature block
 # MIImbAYJKoZIhvcNAQcCoIImXTCCJlkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHwGfW+z6josjrRbDNIHvcBkt
-# VvWggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0nBXggwaEjxOBkGgUgTkOHuN
+# qn+ggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
 # AQwFADBlMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMSQwIgYDVQQDExtEaWdpQ2VydCBBc3N1cmVk
 # IElEIFJvb3QgQ0EwHhcNMjIwODAxMDAwMDAwWhcNMzExMTA5MjM1OTU5WjBiMQsw
@@ -602,30 +602,30 @@ Function Get-WindowsServicing {
 # BgNVBAMTG0NlcnR1bSBDb2RlIFNpZ25pbmcgMjAyMSBDQQIQeAuTgzemd0ILREkK
 # U+Yq2jAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkq
 # hkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGC
-# NwIBFTAjBgkqhkiG9w0BCQQxFgQU+JnU5cZfJRzPWQcP+sHqBLz2MuQwDQYJKoZI
-# hvcNAQEBBQAEggGAnR1qFthi5bMQmKDSjqzzxAa/f+2WU5TIoTiTOTjgfzG/uZTZ
-# Y8xtwJsIFT3K5mNdJdhIuDezMrEgOjwdOGcpzUJdHRdWqYs0IN1SYd+crYN5Z2SI
-# YnrWOlR3Pho4xwvZaGTDjQztZ4/dX2/7UzENWgWl0pPZhvNeqNkj4t3VHJ5zUkpv
-# VOUMVtv1VDmov4SI4bJHJ1MFRbwKlm5bWKBHTysYIWif8aHqomDq2S/lVh83Efaq
-# USdtKhmLJgLECrntYlteDLQF6GoCokj0wHZckvt8jhCEzqtltCrDCzUVD25iYWXp
-# /gqYlS/lUsZ0JM+0Xtd/w0vfaoEuIAkpCZ8g3VwCbB7+lbXKSHTTegFAniVwJvfM
-# HTGBdck7M3dXpwzUFeg/mHArX7mhD+mO4BggT5ARpZyGwoBEfRnx0pO4eIuzpmfl
-# Jz/sJD9abnyJ3WAxgQqnqyRu/PAhZQ456s/v5y/V/Dg77nLxx2j+LqhuAuCxvr5n
-# vyQpDe9KuHbqd08ooYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# NwIBFTAjBgkqhkiG9w0BCQQxFgQURXy82ZzFaePZaE5b6aOAnNV7jPswDQYJKoZI
+# hvcNAQEBBQAEggGAnb35k0m8bPz833FbCj4bfSMYIUtMWPvPiRR9EXSQU1TgrzHu
+# 7TzOj1/Rc6VPL/UcI4YUy61tCSrk/5x8o+Qy91Y8p/ymneQ+87DLMgJJKcXX+4ey
+# BsqAUF2urFnfKil/oHKQjeZjgjabFKbu4sRRXUP2ZFRIYS0D86uvtYo3VpvtgYsn
+# ltJwQ0DHPp3e90bJFG9OATvT6Z9kndwsIQNm6x50t4nrMxwBxrJCu5qDt9Fjn8gz
+# AjOIV3QiC5EzqXgKimwV/q2cRHB22831VWgm6aTMaJp1Jx4vLZdacPye74PPwsbs
+# 8aJ6fgiiqbYlRW0iMf31Sbo+YotTTlA7gf/PJxerfg+q/WKrt3+R8hktqQTqx5jR
+# ha0T0mQn+8uceBWeaDQ4gWRtOa3nx7P8fEmm9elK/I9A9NqWcT5vKfmAnBtD9jNh
+# 6zdE3fZ0Z/bTgBqAmCCQPpaUcOl8737qPsB/nNdI1gXlU+nLn2QnoCvYQxPdFUe7
+# eoCS73+oN4prcTeVoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQC65mvFq6f5WHxvnpBOMzBDANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxNjIwMDIzOFowLwYJ
-# KoZIhvcNAQkEMSIEIKC4xPmO3/eO36t5nG20XxlMXUEz/G6iC85lYY59lo8vMA0G
-# CSqGSIb3DQEBAQUABIICALW94SxC/Y+QuqY/WB28vv+i+FDjrUQPJd0dR4Oyt9vD
-# O92YqgdZxBOcxu3WOz1o6KbW5car1xnj/frJVmEGYWyZVCzMn9SC3DFGaQtitW1/
-# DTQzMf8rPFlS9hXdGhvfPkyxZ6tD76pRzRAPBTN2+JNJD77FcUikf8Dw68QrEZ/V
-# DvIiooBieSo3oLkA/Ua8Mx/64hHA51V8ufgAvKUQHzTs3lIqKLZjA0/1Eei2kzd3
-# 8uJEUYGl5fK9CaED58/kPd6kWrQigG5sRoitbuH+WlSBZNCNNFRat9ahv9ouSIC4
-# 0AgzulZdT0ax/csA6xclRdZvf2uEWQhHGT2N2STt9Zh1zMEjW9v5NVk9ySlnjEkZ
-# ppb90tUbS2oMR5PEa6M5T1qR5NKOnBw+4BiE58VNFYG7r+TXxL2HgsdHq3xH/f+c
-# 6KUVeQzecfD3aatKqbKp1bbYXSxuNtX7sTjDskQga0snc/Npjr7dHqNqX+p6NipJ
-# 89wzcMSmspuDYUa4EtXpCVmdOs/C1Rvbxp4JNKyEJkbh6p4RcNigycRjWBojChTw
-# WTJifN48pYcf9oMko0PDZi2knzQ0zKqAvufYOHe0xK5C0+5hOh+WGZaLnUjxV2Ae
-# 8cjOSLdEVQXXQuhqH+9BXFwcAtxZwPBiDHYPBQWCQYIunmjHFwvln0T9vv1cReKG
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxNjIwMzMxMlowLwYJ
+# KoZIhvcNAQkEMSIEIGlqSq8umzSWWZ9E5SWmBmWYuJoMjfvLewzbact8ZJBuMA0G
+# CSqGSIb3DQEBAQUABIICAF9PwpL5Pf5FaJweaczoD81bPyvdJykdNYtRIStgAsbb
+# c2rmgVB5El1KcVZRCKdVOg7O5gTZdAng+RU7xIiQLM8nae6HIWuYDX19xNN8Eawf
+# PEkgFM9naVzZ+6ClgzW8NvKzpmoN/1NcAVIW3MyDPaADiDkkysMQgrgfCgZztjbn
+# w8AuvyaC9QXvZpNaq0MBwKK29gAI+vKbvhrgePZt4m5xzJxosjNAvYrG6Lqn7S46
+# GqbKVAI6iOS+9BPh+gtusO8oxCEUc+vT9VjyGUgNdQSxl2FKU6Juef08YaoKVTuQ
+# 9IsFI6AU4x1U6+qBhVUNu4Bkml5DZbwkPw55Bfccz7WiU0hApGVVG1ZkiaU9yC9M
+# yXzVDQ4lMJp7XJoMQwVTEVpymBgwH2m3fINFyqcJwOz9RYQ562t9Q6GOjXKvowst
+# ojl5Z3139ngx7HnzrheWL7QHnZ9iKqfQOtVYDd8It/VF72iAyMaDvNcikHSAyxo1
+# LtD1xWebkaBhRX84s4jyEHDygf2PFxQuY6QB4KHgM03NSmNseV7h5E4JTJSpCRoG
+# ObISYmF7GMW2wW+LA2ZexrRijLmIJ1x35s6D1C5OzpEWCGy3shUyzQSh1mtTlImj
+# bAWnB2BF+RFVQ8X06bNAGQ5U2+mEfd1ZU2l81cpZDYtgOQaapg7Md9ESzWG06Zf3
 # SIG # End signature block
