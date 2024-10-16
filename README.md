@@ -9,6 +9,8 @@
 
 Gets Windows OS servicing information (OS Name, Version, Service start date, Service end date, Serviced, Lifecycle Policy URL) for Windows client and server versions. Useful for scripting and automation purposes. Supports Windows 10 and Windows Server 2016 onwards.
 
+The project is now fully signed using a code singing certificate. If you have found this project useful please [:heart:Sponsor](https://github.com/sponsors/AshleyHow) to help fund future code signing certificates.
+
 ## Installing the Module
 
 ### PowerShell Support
@@ -43,41 +45,45 @@ Gets Windows OS servicing information (OS Name, Version, Service start date, Ser
 
 This parameter is optional. Returns servicing information for specified operating system caption. Supported accepted values:
 
-| Windows Client OS Captions                          |                                                                                    
-| :-------------------------------------------------- | 
-| Microsoft Windows 10 Home                           |
-| Microsoft Windows 10 Pro                            |
-| Microsoft Windows 10 Pro for Workstations           |
-| Microsoft Windows 10 Pro Education                  |
-| Microsoft Windows 10 Business                       |
-| Microsoft Windows 10 Enterprise                     |
-| Microsoft Windows 10 Education                      | 
-| Microsoft Windows 10 Enterprise multi-session       |
-| Microsoft Windows 10 Enterprise 2015 LTSB           |
-| Microsoft Windows 10 Enterprise 2016 LTSB           |
-| Microsoft Windows 10 Enterprise LTSC 2019           |
-| Microsoft Windows 10 Enterprise LTSC 2021           |
-| Microsoft Windows 11 Home                           |
-| Microsoft Windows 11 Pro                            |
-| Microsoft Windows 11 Pro for Workstations           |
-| Microsoft Windows 11 Pro Education                  |
-| Microsoft Windows 10 Business                       |
-| Microsoft Windows 11 Enterprise                     |
-| Microsoft Windows 11 Education                      |
-| Microsoft Windows 11 Enterprise multi-session       | 
-
+| Windows Client OS Captions                                    |
+| :------------------------------------------------------------ |
+| Microsoft Windows 10 Home                                     |
+| Microsoft Windows 10 Pro                                      |
+| Microsoft Windows 10 Pro for Workstations                     |
+| Microsoft Windows 10 Pro Education                            |
+| Microsoft Windows 10 Business                                 |
+| Microsoft Windows 10 Enterprise                               |
+| Microsoft Windows 10 Enterprise 2015 LTSB                     |
+| Microsoft Windows 10 Enterprise 2016 LTSB                     |
+| Microsoft Windows 10 Enterprise LTSC                          |
+| Microsoft Windows 10 IoT Enterprise                           |
+| Microsoft Windows 10 IoT Enterprise LTSC                      |
+| Microsoft Windows 10 Education                                |
+| Microsoft Windows 10 Enterprise multi-session                 |
+| Microsoft Windows 11 Home                                     |
+| Microsoft Windows 11 Pro                                      |
+| Microsoft Windows 11 Pro for Workstations                     |
+| Microsoft Windows 11 Pro Education                            |
+| Microsoft Windows 10 Business                                 |
+| Microsoft Windows 11 Enterprise                               |
+| Microsoft Windows 11 Enterprise LTSC                          |
+| Microsoft Windows 11 IoT Enterprise                           |
+| Microsoft Windows 11 IoT Enterprise LTSC                      |
+| Microsoft Windows 11 IoT Enterprise Subscription LTSC         |
+| Microsoft Windows 11 Education                                |
+| Microsoft Windows 11 Enterprise multi-session                 |
 
 | Windows Server OS Captions                          |
 | :-------------------------------------------------- |
-| Microsoft Windows Server Standard                   | 
-| Microsoft Windows Server Datacenter                 | 
-| Microsoft Windows Server 2016                       | 
+| Microsoft Windows Server Standard                   |
+| Microsoft Windows Server Datacenter                 |
+| Microsoft Windows Server 2016                       |
 | Microsoft Windows Server 2019                       |
 | Microsoft Windows Server 2022                       |
 
    - Version
 
-This parameter is required if the operating system has multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
+This parameter is required if the operating system has or will have multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
 
    - CurrentVersion
 
