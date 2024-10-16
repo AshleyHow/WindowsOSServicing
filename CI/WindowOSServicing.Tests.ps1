@@ -1,261 +1,309 @@
 BeforeAll {
     $Path =  (Get-Item $PsScriptRoot).parent.FullName + "\WindowsOSServicing.psm1"
     . Import-Module -Name $Path -Verbose
+
+    # Function to check if a string contains a valid date in YYYY-MM-DD format
+    Function Find-ValidDate {
+        Param (
+            [string]$InputString
+        )
+        # Trim whitespace from the input string
+        $InputString = $InputString.Trim()
+
+        # Try to parse the date
+        Try {
+            [datetime]::ParseExact($InputString, "yyyy-MM-dd", $null) | Out-Null
+            Return $true
+        }
+        Catch {
+            Return $false
+        }
+    }
+
+    Function Find-TrueOrFalse {
+        Param (
+            [object]$Value
+        )
+        # Return true if the value is either $true or $false
+        Return $Value -eq $true -or $Value -eq $false
+    }
 }
 
 If ($PSVersionTable.PSVersion.Major -le 6) {
     Describe "PS - Get-WindowsServicing" {
-        Context "Microsoft Windows 10 Home" {
+        Context "Microsoft Windows 10 Home (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Home" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Home"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro" {
+        Context "Microsoft Windows 10 Pro (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro for Workstations" {
+        Context "Microsoft Windows 10 Pro for Workstations (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro for Workstations" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro for Workstations"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro Education" {
+        Context "Microsoft Windows 10 Pro Education (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro Education"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Business" {
+        Context "Microsoft Windows 10 Business (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Business" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Business"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Enterprise" {
+        Context "Microsoft Windows 10 Enterprise (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 IoT Enterprise" {
+        Context "Microsoft Windows 10 IoT Enterprise (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise"
             }
         }
-        Context "Microsoft Windows 10 Education" {
+        Context "Microsoft Windows 10 Education (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Education"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 Pro Enterprise multi-session" {
+        Context "Microsoft Windows 10 Pro Enterprise multi-session (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise multi-session" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise multi-session"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 Home" {
+        Context "Microsoft Windows 11 Home (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Home" -Version "22H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Home" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Home"
-                $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro" {
+        Context "Microsoft Windows 11 Pro (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro for Workstations" {
+        Context "Microsoft Windows 11 Pro for Workstations (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro for Workstations" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro for Workstations" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro for Workstations"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro Education" {
+        Context "Microsoft Windows 11 Pro Education (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro Education"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Business" {
+        Context "Microsoft Windows 11 Business (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Business"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Enterprise" {
+        Context "Microsoft Windows 11 Enterprise (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Enterprise"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 IoT Enterprise" {
+        Context "Microsoft Windows 11 IoT Enterprise (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise"
             }
         }
-        Context "Microsoft Windows 11 Education" {
+        Context "Microsoft Windows 11 Education (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Education" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Education" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Education"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 Pro Enterprise multi-session" {
+        Context "Microsoft Windows 11 Pro Enterprise multi-session (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise multi-session" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise multi-session" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Enterprise multi-session"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 Enterprise 2015 LTSB" {
+        Context "Microsoft Windows 10 Enterprise 2015 LTSB (1507)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise 2015 LTSB"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise 2015 LTSB"
                 $Results.Version | Should -Be "1507"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2015-ltsb"
             }
         }
-        Context "Microsoft Windows 10 Enterprise 2016 LTSB" {
+        Context "Microsoft Windows 10 Enterprise 2016 LTSB (1607)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise 2016 LTSB"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise 2016 LTSB"
                 $Results.Version | Should -Be "1607"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2016-ltsb"
             }
         }
-        Context "Microsoft Windows 10 Enterprise LTSC 2019" {
+        Context "Microsoft Windows 10 Enterprise LTSC 2019 (1809)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC 2019"
-                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC 2019"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC" -Version "1809"
+                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC"
                 $Results.Version | Should -Be "1809"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
             }
         }
-        Context "Microsoft Windows 10 Enterprise LTSC 2021" {
+        Context "Microsoft Windows 10 Enterprise LTSC 2021 (21H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC 2021"
-                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC 2021"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC" -Version "21H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
             }
         }
-        Context "Microsoft Windows 10 IoT Enterprise LTSC 2021" {
+        Context "Microsoft Windows 10 IoT Enterprise LTSC 2021 (21H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC 2021"
-                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC 2021"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC" -Version "21H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
+            }
+        }
+        Context "Microsoft Windows 11 IoT Enterprise LTSC 2024 (24H2)" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise LTSC" -Version "24H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise LTSC"
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
+            }
+        }
+        Context "Microsoft Windows 11 IoT Enterprise Subscription LTSC 2024 (24H2)" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise Subscription LTSC" -Version "24H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise Subscription LTSC"
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
             }
         }
         Context "Microsoft Windows Server 2016" {
@@ -263,9 +311,9 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2016"
                 $Results.Name | Should -Be "Microsoft Windows Server 2016"
                 $Results.Version | Should -Be "1607"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
             }
         }
@@ -274,9 +322,9 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2019"
                 $Results.Name | Should -Be "Microsoft Windows Server 2019"
                 $Results.Version | Should -Be "1809"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2019"
             }
         }
@@ -285,31 +333,31 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2022"
                 $Results.Name | Should -Be "Microsoft Windows Server 2022"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
             }
         }
-        Context "Microsoft Windows Server Standard" {
+        Context "Microsoft Windows Server Standard (20H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Standard" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Standard"
                 $Results.Version | Should -Be "20H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
-        Context "Microsoft Windows Server Datacenter" {
+        Context "Microsoft Windows Server Datacenter (20H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Datacenter" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Datacenter"
                 $Results.Version | Should -Be "20H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
@@ -318,9 +366,9 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
                 $Results = Get-WindowsServicing -CurrentVersion
                 $Results.Name | Should -Not -BeNullOrEmpty
                 $Results.Version | Should -Not -BeNullOrEmpty
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
             }
         }
@@ -378,257 +426,279 @@ If ($PSVersionTable.PSVersion.Major -le 6) {
 }
 Else {
     Describe "PWSH - Get-WindowsServicing" {
-        Context "Microsoft Windows 10 Home" {
+        Context "Microsoft Windows 10 Home (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Home" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Home"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro" {
+        Context "Microsoft Windows 10 Pro (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro for Workstations" {
+        Context "Microsoft Windows 10 Pro for Workstations (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro for Workstations" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro for Workstations"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Pro Education" {
+        Context "Microsoft Windows 10 Pro Education (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Pro Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Pro Education"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Business" {
+        Context "Microsoft Windows 10 Business (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Business" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Business"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-home-and-pro"
             }
         }
-        Context "Microsoft Windows 10 Enterprise" {
+        Context "Microsoft Windows 10 Enterprise (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 IoT Enterprise" {
+        Context "Microsoft Windows 10 IoT Enterprise (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise"
             }
         }
-        Context "Microsoft Windows 10 Education" {
+        Context "Microsoft Windows 10 Education (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Education" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Education"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 Pro Enterprise multi-session" {
+        Context "Microsoft Windows 10 Pro Enterprise multi-session (22H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise multi-session" -Version "22H2"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise multi-session"
                 $Results.Version | Should -Be "22H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 Home" {
+        Context "Microsoft Windows 11 Home (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Home" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Home" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Home"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro" {
+        Context "Microsoft Windows 11 Pro (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro for Workstations" {
+        Context "Microsoft Windows 11 Pro for Workstations (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro for Workstations" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro for Workstations" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro for Workstations"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Pro Education" {
+        Context "Microsoft Windows 11 Pro Education (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Pro Education" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Pro Education"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Business" {
+        Context "Microsoft Windows 11 Business (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Business" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Business"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
             }
         }
-        Context "Microsoft Windows 11 Enterprise" {
+        Context "Microsoft Windows 11 Enterprise (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Enterprise"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 IoT Enterprise" {
+        Context "Microsoft Windows 11 IoT Enterprise (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise"
             }
         }
-        Context "Microsoft Windows 11 Education" {
+        Context "Microsoft Windows 11 Education (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Education" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Education" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Education"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 11 Pro Enterprise multi-session" {
+        Context "Microsoft Windows 11 Pro Enterprise multi-session (24H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise multi-session" -Version "23H2"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 Enterprise multi-session" -Version "24H2"
                 $Results.Name | Should -Be "Microsoft Windows 11 Enterprise multi-session"
-                $Results.Version | Should -Be "23H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-and-education"
             }
         }
-        Context "Microsoft Windows 10 Enterprise 2015 LTSB" {
+        Context "Microsoft Windows 10 Enterprise 2015 LTSB (1507)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise 2015 LTSB"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise 2015 LTSB"
                 $Results.Version | Should -Be "1507"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2015-ltsb"
             }
         }
-        Context "Microsoft Windows 10 Enterprise 2016 LTSB" {
+        Context "Microsoft Windows 10 Enterprise 2016 LTSB (1607)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise 2016 LTSB"
                 $Results.Name | Should -Be "Microsoft Windows 10 Enterprise 2016 LTSB"
                 $Results.Version | Should -Be "1607"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-2016-ltsb"
             }
         }
-        Context "Microsoft Windows 10 Enterprise LTSC 2019" {
+        Context "Microsoft Windows 10 Enterprise LTSC 2019 (1809)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC 2019"
-                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC 2019"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC" -Version "1809"
+                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC"
                 $Results.Version | Should -Be "1809"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
             }
         }
-        Context "Microsoft Windows 10 Enterprise LTSC 2021" {
+        Context "Microsoft Windows 10 Enterprise LTSC 2021 (21H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC 2021"
-                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC 2021"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 Enterprise LTSC" -Version "21H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 Enterprise LTSC"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
             }
         }
-        Context "Microsoft Windows 10 IoT Enterprise LTSC 2021" {
+        Context "Microsoft Windows 10 IoT Enterprise LTSC 2021 (21H2)" {
             It "Results" {
-                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC 2021"
-                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC 2021"
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 10 IoT Enterprise LTSC" -Version "21H2"
+                $Results.Name | Should -Be "Microsoft Windows 10 IoT Enterprise LTSC"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
+            }
+        }
+        Context "Microsoft Windows 11 IoT Enterprise LTSC 2024 (24H2)" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise LTSC" -Version "24H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise LTSC"
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
+            }
+        }
+        Context "Microsoft Windows 11 IoT Enterprise Subscription LTSC 2024 (24H2)" {
+            It "Results" {
+                $Results = Get-WindowsServicing -Caption "Microsoft Windows 11 IoT Enterprise Subscription LTSC" -Version "24H2"
+                $Results.Name | Should -Be "Microsoft Windows 11 IoT Enterprise Subscription LTSC"
+                $Results.Version | Should -Be "24H2"
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
+                $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
             }
         }
         Context "Microsoft Windows Server 2016" {
@@ -636,9 +706,9 @@ Else {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2016"
                 $Results.Name | Should -Be "Microsoft Windows Server 2016"
                 $Results.Version | Should -Be "1607"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2016"
             }
         }
@@ -647,9 +717,9 @@ Else {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2019"
                 $Results.Name | Should -Be "Microsoft Windows Server 2019"
                 $Results.Version | Should -Be "1809"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2019"
             }
         }
@@ -658,31 +728,31 @@ Else {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server 2022"
                 $Results.Name | Should -Be "Microsoft Windows Server 2022"
                 $Results.Version | Should -Be "21H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server-2022"
             }
         }
-        Context "Microsoft Windows Server Standard" {
+        Context "Microsoft Windows Server Standard (20H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Standard" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Standard"
                 $Results.Version | Should -Be "20H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
-        Context "Microsoft Windows Server Datacenter" {
+        Context "Microsoft Windows Server Datacenter (20H2)" {
             It "Results" {
                 $Results = Get-WindowsServicing -Caption "Microsoft Windows Server Datacenter" -Version "20H2"
                 $Results.Name | Should -Be "Microsoft Windows Server Datacenter"
                 $Results.Version | Should -Be "20H2"
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Be "https://learn.microsoft.com/en-us/lifecycle/products/windows-server"
             }
         }
@@ -691,9 +761,9 @@ Else {
                 $Results = Get-WindowsServicing -CurrentVersion
                 $Results.Name | Should -Not -BeNullOrEmpty
                 $Results.Version | Should -Not -BeNullOrEmpty
-                $Results.'Service start date' | Should -Not -BeNullOrEmpty
-                $Results.'Service end date' | Should -Not -BeNullOrEmpty
-                $Results.'Serviced' | Should -Not -BeNullOrEmpty
+                $Results.'Service start date' | Find-ValidDate $_
+                $Results.'Service end date' | Find-ValidDate $_
+                $Results.'Serviced' | Find-TrueOrFalse $_
                 $Results.'Lifecycle Policy URL' | Should -Not -BeNullOrEmpty
             }
         }
@@ -752,8 +822,8 @@ Else {
 # SIG # Begin signature block
 # MIImbAYJKoZIhvcNAQcCoIImXTCCJlkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUxd5F+20ZQYyKrXG9Xj5zAZJ8
-# lWOggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUAwzCbcLeK4kAQONqoRCkQQK0
+# fhWggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
 # AQwFADBlMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMSQwIgYDVQQDExtEaWdpQ2VydCBBc3N1cmVk
 # IElEIFJvb3QgQ0EwHhcNMjIwODAxMDAwMDAwWhcNMzExMTA5MjM1OTU5WjBiMQsw
@@ -929,30 +999,30 @@ Else {
 # BgNVBAMTG0NlcnR1bSBDb2RlIFNpZ25pbmcgMjAyMSBDQQIQeAuTgzemd0ILREkK
 # U+Yq2jAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkq
 # hkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGC
-# NwIBFTAjBgkqhkiG9w0BCQQxFgQUtMPHq1Hdpqa4HKcHQgH+Hu2ia/QwDQYJKoZI
-# hvcNAQEBBQAEggGAmIBrwxxRcHZkt7obmWBo6YyhCHpT2esD8suZcHecwq5ua9s2
-# u4Rqvqr1Oj0EXlkUaZJMKLxNwwVCiQ7uXYzt9NtNEEySKwrwGzW32p3VMAqul55f
-# MAUIDkjNPmM9F2og9kzstcBpRL3Qzyd/3b7ZjhUgsHADC02hofl1kH8JLJUIMtO0
-# IWkOOYVDYuAK7IhI1rrKhPI3UouKy4OC14yCjsO6ti+Q+k3Glo7HmasdbUFxfsxl
-# WxENe1+nLfSeaWZjLpKCr/7Jtq7v5IauNPZjFMxePXdxc2I305MsrJfTUy8pz7Lq
-# Hmnr0e6dBsc39FxnIrsf6lJ+MlJYRmqAnzfAYapCVGjHZ7fSvTi7G9AJ0yPZhuNp
-# ZEnhDgN4U1Lua9v4KzPz++RLlFKYnCb877wnF+3MxY1ZSj1uSu1LGyY8mlw4SBv6
-# WAN3+W0T6J/W9eATF3q6LBIlGcFFWxiWBrTiqUDLAgZ4MFlR+ryG8RFusp+OSaoG
-# XJ/6Vl7JaM1nmO2boYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# NwIBFTAjBgkqhkiG9w0BCQQxFgQUSYUvGhdR7cSdaX8IQkB+lolm6XowDQYJKoZI
+# hvcNAQEBBQAEggGAIts3tHHbuxw48PgQgBevjtvbrNuFBV/8XUXns44cANufDTbi
+# Da09bqKl/cIAaPV2SodIr4RMrB/usL/RxSy8VOMa8pDq1gBX3e8YiUY2Zv/OwlbS
+# /CI44f/jcAki61Faq4rdIXv/C91oTTsBBI/ogiIIv2c6nJY5aW4CIA5OmSNNQhkH
+# 87AJQcUQVt3m2AZ2BeYpnI4hQ3oC9P9bv/ayPg8WhdlY2t8lIe1JZdW1FgY76MEr
+# VD1QkdyrWpcy6R04Y7r5WJ5vH23LauihPVm7K4CE7L+usCSFRps6P3ouC1qlXM4D
+# etxpKFWAppc0zBmQOcR26SMqi70i/BYub81FHLLF8pji4lp+H5NDjIA2ez5Xsawz
+# 60QkWRC976GJKKm77759kxlvJfAjMJPIrgTnnmPlNTXjh8PJeg1b4yfumTphvnYA
+# dr1GGXCj6/sffDrSogMVktSInz+e4H3j7+dRRXvu6b3JuAuquP05jrvvR13VknOv
+# VbqB+gkvKAV9Fku+oYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQC65mvFq6f5WHxvnpBOMzBDANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxMTAwMjgwN1owLwYJ
-# KoZIhvcNAQkEMSIEID42f2dvBVKMSeDAQLcwceqpR2+3FCmXwVMskgXRPciqMA0G
-# CSqGSIb3DQEBAQUABIICAJ+PaPn6A/wQaTooE9fmrpCa0hssX3sHB+TLeQu8/6ET
-# WVmHGQhm+N/MKeyqZOBEYCyLdqSaiCq3kLeBV1VABaNsOyoMxSp63HcHh6lGT8D7
-# ln2PcrrNjf7ihdYGJCUZyHdZAFdWdjHv0bYxrs4K5hR5DsH1C+HrTx4hXSAemIaH
-# 6ND6+G3ZuTKm1hiCV48VNePszCL+B8AfGAM7/YndLzk9ZfRT/J0H0cqZJP/1Fdns
-# smeKX3pQhTDmkBpA/hlmk2UHfPpLOqTvPLRZUzdllMfN8yIc2s+sZ0IRRZIKg/qK
-# Up5i7xe8C/XGZEP3jtFZSTnb763YhrEEjX/Qe8ZvPrOBzD6DH5xoDLat+Q11quHA
-# YCmqAFODENEAL+1LUHcRd9CAU+3EyNMvSRGvLWopAKJMiNGaxf6QQo5lDfbGpiP0
-# dzutmpErMnfpfd+9cJiQvIO4RTg+6NK8XBgRK4YhK1+dl9NWIpGPMw0WJdi07BuX
-# 4HwqRLX2IQDA9yW+Gg2n5c4wffhnse0uetgyBpf8Li40uQGIRbCBox9XJFEHn6z/
-# +q77mXekW+ycxX6Av1d4WOnQs2+hfEc4C9p5F0KlI82krklcsiajL23UnP5hbFMb
-# biyZcWcaiiL5tdtVSANKuH40a+dYJMeuPugH8IFRtKDKbMdD/4wF1a6AIooYcmsd
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxNjIwMDIzNlowLwYJ
+# KoZIhvcNAQkEMSIEIIyW1Tp30xzM3S8dUODOYLrC4jZNfPTskn/TbzkqcmEAMA0G
+# CSqGSIb3DQEBAQUABIICAJL+F/rGfOl7CxOlxV0lqb9qW64elzjM4xtaf8pFfmJG
+# EJobGRq7x9ZXPXcwGhXAQtvv+94KWX+3MpkEkureIGJGPPDdGJygP/rkW5iEetJf
+# PiHZLnOZ6tvO13JPHJVAd5SORbE220eANPChnm8DVihG/TI5sVJ/mMRa9qRirKB2
+# ACcKdXUYvMi545JvEdVbS0rKQ6QvqOi68yX4OFUvCp8NiYZxr6KHM8qHYd9HaTpw
+# a9+uUGvcM2zUE90PRlSmAF4lyw41stADcghzyUx9IOGpTBAoDGG877pi4Nr4U0QZ
+# W+sSkp5BrGeQUSpwqXFfAfc9UKm/DEkorHfNMAni3JDj7vD7oJh1cVeIXP6MZ8wC
+# 2d17jBDdfF//nG8hX8fCuRJG4Pevhp9Vm54b177OVdgJVMDh7jp7tVfwN1zyd/NP
+# cweAwb6JcbjY+T8GrIJg4wjJko/S9zYS+hVIiRI9lA06YbV3a6NyB7AFQzWnaIHK
+# 8+kTin37z6eCxPY1wrFjO/OiGRPPF6cHpjCWZEyeQdSKPTOoHC3hSooKsXQPmgYj
+# S4T8Bsmbm6/zhh/rZ/PVDlGBizd90CMpGzqEdfiN/NIaZebJMDe8Fi7v4cEYvTI7
+# /t1Tvv8geiWYsaN+cExEYPdF5Vbde2gUr8ISR1Fke/5gZQG4dIqIMwSntFURc9FS
 # SIG # End signature block

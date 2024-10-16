@@ -13,17 +13,16 @@ Function Get-WindowsServicing {
                                                 - Windows 10 Pro Education
                                                 - Windows 10 Business
                                                 - Windows 10 Enterprise
-                                                - Windows 10 IoT Enterprise
-                                                - Windows 10 Education
-                                                - Windows 10 Enterprise multi-session
-
                                                 - Windows 10 Enterprise 2015 LTSB
                                                 - Windows 10 Enterprise 2016 LTSB
                                                 - Windows 10 Enterprise LTSC 2019
                                                 - Windows 10 Enterprise LTSC 2021
                                                 - Windows 10 Enterprise LTSC
+                                                - Windows 10 IoT Enterprise
                                                 - Windows 10 IoT Enterprise LTSC 2021
                                                 - Windows 10 IoT Enterprise LTSC
+                                                - Windows 10 Education
+                                                - Windows 10 Enterprise multi-session
 
                                                 - Windows 11 Home
                                                 - Windows 11 Pro
@@ -31,9 +30,13 @@ Function Get-WindowsServicing {
                                                 - Windows 11 Pro Education
                                                 - Windows 11 Business
                                                 - Windows 11 Enterprise
+                                                - Windows 11 Enterprise LTSC
                                                 - Windows 11 IoT Enterprise
+                                                - Windows 11 IoT Enterprise LTSC
+                                                - Windows 11 IoT Enterprise Subscription LTSC
                                                 - Windows 11 Education
                                                 - Windows 11 Enterprise multi-session
+
 
             Windows Server OS Captions          - Windows Server Standard
                                                 - Windows Server Datacenter
@@ -41,7 +44,7 @@ Function Get-WindowsServicing {
                                                 - Windows Server 2019
                                                 - Windows Server 2022
         .PARAMETER Version
-            This parameter is required if the operating system has multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
+            This parameter is required if the operating system has or will have multiple versions such as Windows 10 or 11. Not required if using the CurrentVersion parameter.
         .PARAMETER CurrentVersion
             This parameter is optional. Returns servicing information for the installed version.
         .EXAMPLE
@@ -66,7 +69,11 @@ Function Get-WindowsServicing {
                 '*Windows 10 Pro Education*',
                 '*Windows 10 Business*',
                 '*Windows 10 Enterprise*',
+                '*Windows 10 Enterprise 2015 LTSB*',
+                '*Windows 10 Enterprise 2016 LTSB*',
+                '*Windows 10 Enterprise LTSC*',
                 '*Windows 10 IoT Enterprise*',
+                '*Windows 10 IoT Enterprise LTSC*',
                 '*Windows 10 Education*',
                 '*Windows 10 Enterprise multi-session*',
                 '*Windows 11 Home*',
@@ -75,16 +82,12 @@ Function Get-WindowsServicing {
                 '*Windows 11 Pro Education*',
                 '*Windows 11 Business*',
                 '*Windows 11 Enterprise*',
-                '*Windows 11 Iot Enterprise*',
+                '*Windows 11 Enterprise LTSC*',
+                '*Windows 11 IoT Enterprise*',
+                '*Windows 11 IoT Enterprise LTSC*',
+                '*Windows 11 IoT Enterprise Subscription LTSC*',
                 '*Windows 11 Education*',
                 '*Windows 11 Enterprise multi-session*',
-                '*Windows 10 Enterprise 2015 LTSB*',
-                '*Windows 10 Enterprise 2016 LTSB*',
-                '*Windows 10 Enterprise LTSC 2019*',
-                '*Windows 10 Enterprise LTSC 2021*',
-                '*Windows 10 Enterprise LTSC*',
-                '*Windows 10 IoT Enterprise LTSC 2021*',
-                '*Windows 10 IoT Enterprise LTSC*',
                 '*Windows Server 2016*',
                 '*Windows Server 2019*',
                 '*Windows Server 2022*',
@@ -132,7 +135,7 @@ Function Get-WindowsServicing {
             $Caption = (Get-CIMInstance -Classname Win32_OperatingSystem -Erroraction Stop).Caption
         }
         Catch {
-            $Caption = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').ProductName
+            $Caption = (systeminfo | Select-String "OS Name").ToString().Split(":")[1].Trim()
         }
         Return $Caption
         If ([String]::IsNullOrEmpty($Caption)) {
@@ -160,21 +163,21 @@ Function Get-WindowsServicing {
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2019") -or ($Caption -eq "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "1809")) {
+    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and ($(Get-Version) -eq "1809" -or $Version -eq "1809")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2019"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2019"
         $TargetVersion = "1809"
         $SecondTableNo = 0
         $EndDateColNo = 3
     }
-    ElseIf (($Caption -match "Windows 10 Enterprise LTSC 2021") -or ($Caption -eq "Windows 10 Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+    ElseIf ($Caption -match "Windows 10 Enterprise LTSC" -and ($(Get-Version) -eq "21H2" -or $Version -eq "21H2")) {
         $FullCaption = "Windows 10 Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
         $SecondTableNo = 0
         $EndDateColNo = 2
     }
-    ElseIf (($Caption -match "Windows 10 IoT Enterprise LTSC 2021") -or ($Caption -eq "Windows 10 IoT Enterprise LTSC" -and $(Get-Version) -eq "21H2")) {
+    ElseIf ($Caption -match "Windows 10 IoT Enterprise LTSC" -and ($(Get-Version) -eq "21H2" -or $Version -eq "21H2")) {
         $FullCaption = "Windows 10 IoT Enterprise LTSC 2021"
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-10-iot-enterprise-ltsc-2021"
         $TargetVersion = "21H2"
@@ -231,6 +234,20 @@ Function Get-WindowsServicing {
         }
         $SecondTableNo = 1
         $EndDateColNo = 2
+    }
+    ElseIf ($Caption -match "Windows 11 Enterprise LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2")) {
+        $FullCaption = "Windows 11 Enterprise LTSC 2024"
+        $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-enterprise-ltsc-2024"
+        $TargetVersion = "24H2"
+        $SecondTableNo = 0
+        $EndDateColNo = 2
+    }
+    ElseIf (($Caption -match "Windows 11 IoT Enterprise LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2")) -or ($Caption -match "Windows 11 IoT Enterprise Subscription LTSC" -and ($(Get-Version) -eq "24H2" -or $Version -eq "24H2"))) {
+        $FullCaption = "Windows 11 IoT Enterprise LTSC 2024"
+        $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-iot-enterprise-ltsc-2024"
+        $TargetVersion = "24H2"
+        $SecondTableNo = 0
+        $EndDateColNo = 3
     }
     ElseIf (($Caption -match "Windows 11 Home") -or ($Caption -match "Windows 11 Pro") -or ($Caption -match "Windows 11 Business")) {
         $LifecycleURL = "https://learn.microsoft.com/en-us/lifecycle/products/windows-11-home-and-pro"
@@ -408,8 +425,8 @@ Function Get-WindowsServicing {
 # SIG # Begin signature block
 # MIImbAYJKoZIhvcNAQcCoIImXTCCJlkCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUvGDs+jc97vD7gYehsmAnFp4r
-# ul6ggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHwGfW+z6josjrRbDNIHvcBkt
+# VvWggiAnMIIFjTCCBHWgAwIBAgIQDpsYjvnQLefv21DiCEAYWjANBgkqhkiG9w0B
 # AQwFADBlMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYD
 # VQQLExB3d3cuZGlnaWNlcnQuY29tMSQwIgYDVQQDExtEaWdpQ2VydCBBc3N1cmVk
 # IElEIFJvb3QgQ0EwHhcNMjIwODAxMDAwMDAwWhcNMzExMTA5MjM1OTU5WjBiMQsw
@@ -585,30 +602,30 @@ Function Get-WindowsServicing {
 # BgNVBAMTG0NlcnR1bSBDb2RlIFNpZ25pbmcgMjAyMSBDQQIQeAuTgzemd0ILREkK
 # U+Yq2jAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZBgkq
 # hkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYBBAGC
-# NwIBFTAjBgkqhkiG9w0BCQQxFgQUz9OLOGWKglRuJupnP5XtDFUZmRwwDQYJKoZI
-# hvcNAQEBBQAEggGAciecR+FXEGzbXGR5MeXXtyZkebgMyJ8JBPJ6pG37kLEm2g00
-# qA29IOctGbOsSpQram6zh5ds6/RorG/dW8cOPKlq+/wzoDnddG3EWJWdPmfZGno9
-# 7RBajmmo9zXtsmvPJ5Jx+RluMckfkKgAKO1FfPUJOJgKuO8jCqcTdtkZMkPJbvxp
-# fLz71wV7YT39LUpg4FCTdI/oqT6+IKqaINfDJ385SKRFQ1F9EuQPN23Nkht65wGd
-# q5Aau8oLcXpB92X04GnbQ1X0pUc6y8Oye/hjo4u6NnRcE/sxyVnaK5TlWAEnDyw3
-# eN8VhCOOnUhZYItJ2U4CkQrRpYltLdTJ+bVqvch8T9mAc443sNTz/Ndi86TYQ+b2
-# P0eqQ2a68KSlq0Tst00LCaEm031TiKiD5HxF5CI5rdhcgUCm4JymeqgBn3pDjeAS
-# xvV+6Z6O/4T//s2Cz8K6wg5NM6TLdYT3EXBZp6RD65AIjsBKAhACAJhM4mr6gb9W
-# fqaZciRB+Io3KIn1oYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# NwIBFTAjBgkqhkiG9w0BCQQxFgQU+JnU5cZfJRzPWQcP+sHqBLz2MuQwDQYJKoZI
+# hvcNAQEBBQAEggGAnR1qFthi5bMQmKDSjqzzxAa/f+2WU5TIoTiTOTjgfzG/uZTZ
+# Y8xtwJsIFT3K5mNdJdhIuDezMrEgOjwdOGcpzUJdHRdWqYs0IN1SYd+crYN5Z2SI
+# YnrWOlR3Pho4xwvZaGTDjQztZ4/dX2/7UzENWgWl0pPZhvNeqNkj4t3VHJ5zUkpv
+# VOUMVtv1VDmov4SI4bJHJ1MFRbwKlm5bWKBHTysYIWif8aHqomDq2S/lVh83Efaq
+# USdtKhmLJgLECrntYlteDLQF6GoCokj0wHZckvt8jhCEzqtltCrDCzUVD25iYWXp
+# /gqYlS/lUsZ0JM+0Xtd/w0vfaoEuIAkpCZ8g3VwCbB7+lbXKSHTTegFAniVwJvfM
+# HTGBdck7M3dXpwzUFeg/mHArX7mhD+mO4BggT5ARpZyGwoBEfRnx0pO4eIuzpmfl
+# Jz/sJD9abnyJ3WAxgQqnqyRu/PAhZQ456s/v5y/V/Dg77nLxx2j+LqhuAuCxvr5n
+# vyQpDe9KuHbqd08ooYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQC65mvFq6f5WHxvnpBOMzBDANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxMTAwMjIxMFowLwYJ
-# KoZIhvcNAQkEMSIEIGjwxQPRLghgr1AKzo1FEX8vqv727GuvBwidW7cTWpz2MA0G
-# CSqGSIb3DQEBAQUABIICAGFTWfGcm7vxB7iuXCl1CIT8oB5RO08l+AKFigTyvnLp
-# fOvVjuHb05Cv7g0tg7yjWpSgFPlb7L7fP1lG1lsyEygDMcB1JEqzStBctYioLpLb
-# Q9WP/ba6pkzmlpTFxoRGTLDYBTwxVhI4mVr2SvYQo9GyOwanfFZIyNuQfMVakJ1j
-# cf0QkP7m/FGtT9OOBL/kVV8764dPiyhXhrNBBNoGrauwfXNu31u1DFJ7HQbD/txO
-# 2xKudn8UmRLqxjT7EHzm8RwOT/n89Yfm8FQ2btTPLfskTyXVXp5hFflFPCumtkkh
-# FYhCmTJPC05aOSOqkFGHQLH8MONyuKM8jQ7davl/fxzCqGYJ1ylFKPsbHN3KfPlo
-# kSLkHHgT9kJFAJ9ou3r8igzefpy5ShbLehv5Y/LaXWUWZPOg8bgmo+CLybFYrfpZ
-# BIvUu6pgYz8z357jmY/DjhR0ebP0Q4NzvsDgLtVgYSO7U+j7e7hsCUUqZHaM+Yrm
-# oHLx6OCRokzkCg5X9bthaH5aYjVpqZ6ao5W/ITr6Uwc3OMsUYoWgvqx5KIin8mro
-# jIHjp4pDSEv2aTxX+KtAQQ9v7iKlvBsnM5z/y2NcnezLakFsC+bhZuqxaSCvxuTv
-# KqpZcHY926MUGQZVeI95a2JwXaEtTFyYhn+lcZ9yCPctKR00djCZDtW170LWHer8
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MTAxNjIwMDIzOFowLwYJ
+# KoZIhvcNAQkEMSIEIKC4xPmO3/eO36t5nG20XxlMXUEz/G6iC85lYY59lo8vMA0G
+# CSqGSIb3DQEBAQUABIICALW94SxC/Y+QuqY/WB28vv+i+FDjrUQPJd0dR4Oyt9vD
+# O92YqgdZxBOcxu3WOz1o6KbW5car1xnj/frJVmEGYWyZVCzMn9SC3DFGaQtitW1/
+# DTQzMf8rPFlS9hXdGhvfPkyxZ6tD76pRzRAPBTN2+JNJD77FcUikf8Dw68QrEZ/V
+# DvIiooBieSo3oLkA/Ua8Mx/64hHA51V8ufgAvKUQHzTs3lIqKLZjA0/1Eei2kzd3
+# 8uJEUYGl5fK9CaED58/kPd6kWrQigG5sRoitbuH+WlSBZNCNNFRat9ahv9ouSIC4
+# 0AgzulZdT0ax/csA6xclRdZvf2uEWQhHGT2N2STt9Zh1zMEjW9v5NVk9ySlnjEkZ
+# ppb90tUbS2oMR5PEa6M5T1qR5NKOnBw+4BiE58VNFYG7r+TXxL2HgsdHq3xH/f+c
+# 6KUVeQzecfD3aatKqbKp1bbYXSxuNtX7sTjDskQga0snc/Npjr7dHqNqX+p6NipJ
+# 89wzcMSmspuDYUa4EtXpCVmdOs/C1Rvbxp4JNKyEJkbh6p4RcNigycRjWBojChTw
+# WTJifN48pYcf9oMko0PDZi2knzQ0zKqAvufYOHe0xK5C0+5hOh+WGZaLnUjxV2Ae
+# 8cjOSLdEVQXXQuhqH+9BXFwcAtxZwPBiDHYPBQWCQYIunmjHFwvln0T9vv1cReKG
 # SIG # End signature block
